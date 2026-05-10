@@ -1,0 +1,1678 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alchemiq</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cinzel+Decorative:wght@700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsQR/1.4.0/jsQR.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --bg:#0c0a06;
+  --surface:#14110a;
+  --surface2:#1e1a11;
+  --surface3:#27221a;
+  --border:#3a3226;
+  --border2:#4a4232;
+  --gold:#c9a84c;
+  --gold2:#e8cc7a;
+  --gold3:#f5e4a8;
+  --ivory:#f0ead8;
+  --muted:#7a6e58;
+  --muted2:#a09280;
+  --text:#f0ead8;
+  --danger:#c0392b;
+  --glow:rgba(201,168,76,0.25);
+}
+
+body {
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Crimson Text',Georgia,serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* Marble texture bg */
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:
+    repeating-linear-gradient(105deg, transparent, transparent 80px, rgba(201,168,76,0.02) 80px, rgba(201,168,76,0.02) 81px),
+    repeating-linear-gradient(15deg, transparent, transparent 120px, rgba(255,255,255,0.01) 120px, rgba(255,255,255,0.01) 121px);
+  pointer-events:none;
+  z-index:0;
+}
+
+/* â”€â”€â”€ HEADER â”€â”€â”€ */
+.header {
+  position:relative;
+  z-index:1;
+  padding:22px 24px 18px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+.header::after {
+  content:'';
+  position:absolute;
+  bottom:0; left:0; right:0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity:0.5;
+}
+.logo {
+  font-family:'Cinzel Decorative',serif;
+  font-size:1.6rem;
+  letter-spacing:0.08em;
+  color:var(--gold);
+  text-shadow:0 0 30px rgba(201,168,76,0.4);
+  line-height:1;
+}
+.logo sub {
+  font-family:'Crimson Text',serif;
+  font-size:0.6rem;
+  color:var(--muted);
+  letter-spacing:0.15em;
+  text-transform:uppercase;
+  display:block;
+  margin-top:4px;
+  font-style:italic;
+}
+.header-note {
+  font-size:0.78rem;
+  color:var(--muted);
+  font-style:italic;
+  text-align:right;
+  max-width:180px;
+  line-height:1.4;
+}
+
+/* â”€â”€â”€ TABS â”€â”€â”€ */
+.tabs {
+  position:relative;
+  z-index:1;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-bottom:1px solid var(--border);
+  background:var(--surface);
+}
+.tab {
+  padding:14px 8px;
+  text-align:center;
+  cursor:pointer;
+  font-family:'Cinzel',serif;
+  font-size:0.65rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted);
+  border-bottom:2px solid transparent;
+  transition:all 0.2s;
+  position:relative;
+}
+.tab.active { color:var(--gold); border-bottom-color:var(--gold); }
+.tab:hover:not(.active) { color:var(--muted2); }
+.tab .badge {
+  position:absolute;
+  top:8px; right:20%;
+  background:var(--gold);
+  color:#0c0a06;
+  border-radius:10px;
+  font-size:0.55rem;
+  font-family:'Crimson Text',serif;
+  font-style:normal;
+  padding:1px 5px;
+  font-weight:600;
+  line-height:1.4;
+}
+
+/* â”€â”€â”€ PANELS â”€â”€â”€ */
+.panel { display:none; position:relative; z-index:1; }
+.panel.active { display:block; }
+
+/* â”€â”€â”€ FORGE PANEL â”€â”€â”€ */
+.sub-tabs {
+  display:flex;
+  gap:0;
+  padding:16px 20px 0;
+}
+.sub-tab {
+  font-family:'Cinzel',serif;
+  font-size:0.6rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding:8px 18px;
+  cursor:pointer;
+  border:1px solid transparent;
+  border-bottom:none;
+  border-radius:3px 3px 0 0;
+  transition:all 0.15s;
+}
+.sub-tab.active {
+  color:var(--gold);
+  border-color:var(--border);
+  background:var(--surface2);
+}
+.sub-panel { display:none; padding:16px 20px 24px; background:var(--surface2); border-top:1px solid var(--border); }
+.sub-panel.active { display:block; }
+
+/* â”€â”€â”€ SECTION HEADER â”€â”€â”€ */
+.sec-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:16px;
+}
+.sec-title {
+  font-family:'Cinzel',serif;
+  font-size:0.7rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--muted2);
+}
+
+/* â”€â”€â”€ BUTTONS â”€â”€â”€ */
+.btn {
+  font-family:'Cinzel',serif;
+  font-size:0.6rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  border:none;
+  border-radius:2px;
+  cursor:pointer;
+  transition:all 0.15s;
+  padding:8px 16px;
+}
+.btn-gold {
+  background:var(--gold);
+  color:#0c0a06;
+  font-weight:700;
+}
+.btn-gold:hover:not(:disabled) { background:var(--gold2); transform:translateY(-1px); box-shadow:0 4px 16px rgba(201,168,76,0.3); }
+.btn-gold:disabled { background:var(--border); color:var(--muted); cursor:not-allowed; }
+.btn-ghost {
+  background:transparent;
+  color:var(--muted);
+  border:1px solid var(--border);
+}
+.btn-ghost:hover:not(:disabled) { border-color:var(--border2); color:var(--muted2); }
+.btn-ghost:disabled { opacity:0.4; cursor:not-allowed; }
+.btn-sm { padding:5px 10px; font-size:0.55rem; }
+.btn-danger { background:transparent; color:var(--danger); border:1px solid rgba(192,57,43,0.3); }
+.btn-danger:hover { background:rgba(192,57,43,0.08); border-color:var(--danger); }
+
+/* â”€â”€â”€ FORM â”€â”€â”€ */
+.form-block {
+  background:var(--surface3);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:16px;
+  margin-bottom:16px;
+}
+.form-title {
+  font-family:'Cinzel',serif;
+  font-size:0.65rem;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:14px;
+  padding-bottom:10px;
+  border-bottom:1px solid var(--border);
+}
+.form-row { margin-bottom:12px; }
+.form-label {
+  display:block;
+  font-size:0.75rem;
+  color:var(--muted2);
+  font-style:italic;
+  margin-bottom:5px;
+}
+input[type=text], textarea, select {
+  width:100%;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  color:var(--ivory);
+  padding:9px 12px;
+  border-radius:2px;
+  font-family:'Crimson Text',serif;
+  font-size:0.95rem;
+  transition:border-color 0.15s;
+}
+input[type=text]:focus, textarea:focus, select:focus {
+  outline:none;
+  border-color:var(--gold);
+  box-shadow:0 0 0 2px rgba(201,168,76,0.1);
+}
+select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a6e58'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 10px center; padding-right:28px; cursor:pointer; }
+textarea { resize:vertical; min-height:60px; }
+
+.upload-btn {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  background:var(--surface2);
+  border:1px dashed var(--border2);
+  border-radius:3px;
+  cursor:pointer;
+  transition:all 0.2s;
+  width:100%;
+}
+.upload-btn:hover { border-color:var(--gold); background:rgba(201,168,76,0.04); }
+.upload-btn .thumb {
+  width:36px; height:36px;
+  border-radius:3px;
+  object-fit:cover;
+  border:1px solid var(--border);
+  flex-shrink:0;
+}
+.upload-btn .thumb-placeholder {
+  width:36px; height:36px;
+  border-radius:3px;
+  background:var(--surface3);
+  border:1px solid var(--border);
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.2rem;
+}
+.upload-btn span { font-size:0.8rem; color:var(--muted); font-style:italic; }
+.upload-btn input { display:none; }
+
+.form-pair {
+  display:grid;
+  grid-template-columns:1fr auto 1fr auto 1fr;
+  gap:10px;
+  align-items:end;
+}
+.plus-symbol {
+  font-size:1.5rem;
+  color:var(--gold);
+  text-align:center;
+  padding-bottom:6px;
+  line-height:1;
+}
+
+/* â”€â”€â”€ ITEM CARDS â”€â”€â”€ */
+.items-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:10px; }
+.item-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:4px;
+  overflow:hidden;
+  transition:border-color 0.2s, transform 0.2s;
+  cursor:pointer;
+  position:relative;
+}
+.item-card:hover { border-color:var(--gold); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.4); }
+.item-card .card-img {
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  display:block;
+}
+.item-card .card-img-placeholder {
+  width:100%;
+  aspect-ratio:1;
+  background:var(--surface2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:2.5rem;
+}
+.item-card .card-body { padding:8px 10px; }
+.item-card .card-name {
+  font-family:'Cinzel',serif;
+  font-size:0.7rem;
+  letter-spacing:0.05em;
+  color:var(--gold2);
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.item-card .card-actions {
+  display:flex;
+  gap:4px;
+  margin-top:7px;
+}
+.item-card .card-del {
+  margin-left:auto;
+  font-size:0.6rem;
+  color:var(--muted);
+  cursor:pointer;
+  padding:2px 5px;
+  border-radius:2px;
+  border:1px solid transparent;
+  transition:all 0.15s;
+  font-family:'Cinzel',serif;
+  letter-spacing:0.05em;
+  background:none;
+}
+.item-card .card-del:hover { color:var(--danger); border-color:rgba(192,57,43,0.3); }
+.item-card .card-qr {
+  font-size:0.6rem;
+  color:var(--muted);
+  cursor:pointer;
+  padding:2px 5px;
+  border-radius:2px;
+  border:1px solid var(--border);
+  transition:all 0.15s;
+  font-family:'Cinzel',serif;
+  letter-spacing:0.05em;
+  background:none;
+  color:var(--muted2);
+}
+.item-card .card-qr:hover { border-color:var(--gold); color:var(--gold); }
+
+/* â”€â”€â”€ RECIPE CARDS â”€â”€â”€ */
+.recipe-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:8px;
+  transition:border-color 0.2s;
+}
+.recipe-card:hover { border-color:var(--border2); }
+.recipe-card .rc-img {
+  width:38px; height:38px;
+  border-radius:3px;
+  object-fit:cover;
+  border:1px solid var(--border);
+  flex-shrink:0;
+}
+.recipe-card .rc-name {
+  font-family:'Cinzel',serif;
+  font-size:0.68rem;
+  letter-spacing:0.05em;
+  color:var(--gold2);
+}
+.recipe-card .rc-sym { font-size:0.9rem; color:var(--muted); flex-shrink:0; }
+.recipe-card .rc-del {
+  margin-left:auto;
+  font-size:0.6rem;
+  color:var(--muted);
+  cursor:pointer;
+  padding:3px 7px;
+  border-radius:2px;
+  border:1px solid transparent;
+  transition:all 0.15s;
+  font-family:'Cinzel',serif;
+  background:none;
+}
+.recipe-card .rc-del:hover { color:var(--danger); border-color:rgba(192,57,43,0.3); }
+
+/* â”€â”€â”€ SCAN PANEL â”€â”€â”€ */
+.scan-wrap { padding:16px 20px 24px; }
+.btn-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
+
+.status-pill {
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 12px;
+  border:1px solid var(--border);
+  border-radius:20px;
+  background:var(--surface);
+  margin-bottom:14px;
+}
+.sdot {
+  width:6px; height:6px;
+  border-radius:50%;
+  background:var(--muted);
+  flex-shrink:0;
+}
+.sdot.on { background:#4caf50; box-shadow:0 0 8px rgba(76,175,80,0.7); animation:pulse 1.4s infinite; }
+.sdot.hit { background:var(--gold); box-shadow:0 0 10px var(--gold); animation:none; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+.stext { font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--muted2); }
+
+#video-wrap {
+  display:none;
+  position:relative;
+  border:1px solid var(--border);
+  border-radius:4px;
+  overflow:hidden;
+  background:#000;
+  margin-bottom:16px;
+}
+#video-wrap.on { display:block; }
+#cam { width:100%; display:block; }
+#scan-cv { display:none; }
+.reticle {
+  position:absolute;
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  width:170px; height:170px;
+  pointer-events:none;
+}
+.reticle::before,.reticle::after,.ret-b::before,.ret-b::after {
+  content:'';
+  position:absolute;
+  width:22px; height:22px;
+  border-color:var(--gold);
+  border-style:solid;
+}
+.reticle::before{top:0;left:0;border-width:2px 0 0 2px}
+.reticle::after{top:0;right:0;border-width:2px 2px 0 0}
+.ret-b{position:absolute;bottom:0;left:0;right:0}
+.ret-b::before{bottom:0;left:0;border-width:0 0 2px 2px}
+.ret-b::after{bottom:0;right:0;border-width:0 2px 2px 0}
+.scan-hint {
+  position:absolute;
+  bottom:10px; left:0; right:0;
+  text-align:center;
+  font-family:'Cinzel',serif;
+  font-size:0.55rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:rgba(201,168,76,0.7);
+}
+
+.inv-title {
+  font-family:'Cinzel',serif;
+  font-size:0.65rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:12px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.inv-title::after { content:''; flex:1; height:1px; background:var(--border); }
+
+.inv-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(80px,1fr)); gap:8px; }
+.inv-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:3px;
+  overflow:hidden;
+  cursor:pointer;
+  animation:popIn 0.35s cubic-bezier(0.175,0.885,0.32,1.275);
+}
+@keyframes popIn { 0%{transform:scale(0.5);opacity:0}100%{transform:scale(1);opacity:1} }
+.inv-card img { width:100%; aspect-ratio:1; object-fit:cover; display:block; }
+.inv-card .inv-name {
+  font-family:'Cinzel',serif;
+  font-size:0.55rem;
+  letter-spacing:0.04em;
+  color:var(--gold2);
+  padding:5px;
+  text-align:center;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.empty-state {
+  font-style:italic;
+  color:var(--muted);
+  font-size:0.85rem;
+  padding:16px 0;
+  text-align:center;
+}
+
+/* â”€â”€â”€ CODEX PANEL â”€â”€â”€ */
+.codex-wrap { padding:20px; }
+.fusion-forge {
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:18px;
+  margin-bottom:20px;
+}
+.fusion-pair {
+  display:grid;
+  grid-template-columns:1fr auto 1fr auto 1fr;
+  align-items:end;
+  gap:12px;
+  margin-bottom:14px;
+}
+.fusion-result {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:14px;
+  margin-top:14px;
+  min-height:70px;
+}
+.fusion-result .recipe-card { margin-top:0; }
+.fusion-note {
+  color:var(--muted);
+  font-size:0.78rem;
+  font-style:italic;
+  line-height:1.45;
+  margin-top:10px;
+}
+@media (max-width:700px) {
+  .form-pair,
+  .fusion-pair {
+    grid-template-columns:1fr;
+  }
+  .form-pair .plus-symbol,
+  .fusion-pair .plus-symbol {
+    padding-bottom:0;
+  }
+}
+.codex-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:16px; }
+.codex-card {
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:4px;
+  overflow:hidden;
+  animation:reveal 0.6s ease;
+}
+@keyframes reveal { 0%{opacity:0;transform:translateY(12px)}100%{opacity:1;transform:none} }
+.codex-card img { width:100%; aspect-ratio:1; object-fit:cover; display:block; }
+.codex-card .cc-body { padding:10px 12px; }
+.codex-card .cc-name {
+  font-family:'Cinzel',serif;
+  font-size:0.75rem;
+  letter-spacing:0.05em;
+  color:var(--gold2);
+  margin-bottom:4px;
+}
+.codex-card .cc-recipe {
+  font-size:0.7rem;
+  color:var(--muted);
+  font-style:italic;
+}
+.codex-card .cc-desc {
+  font-size:0.8rem;
+  color:var(--muted2);
+  margin-top:5px;
+  line-height:1.4;
+}
+
+/* â”€â”€â”€ QR MODAL â”€â”€â”€ */
+.modal-bg {
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  backdrop-filter:blur(4px);
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  animation:fadeIn 0.2s ease;
+}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal {
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:6px;
+  padding:24px;
+  max-width:300px;
+  width:100%;
+  text-align:center;
+  position:relative;
+  box-shadow:0 24px 80px rgba(0,0,0,0.6);
+}
+.modal::before {
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.modal-name {
+  font-family:'Cinzel',serif;
+  font-size:0.8rem;
+  letter-spacing:0.1em;
+  text-transform:uppercase;
+  color:var(--gold2);
+  margin-bottom:16px;
+}
+.qr-holder {
+  background:#fff;
+  padding:12px;
+  display:inline-block;
+  border-radius:4px;
+  margin-bottom:16px;
+}
+.modal-note {
+  font-size:0.8rem;
+  color:var(--muted);
+  font-style:italic;
+  margin-bottom:16px;
+  line-height:1.5;
+}
+.modal-close {
+  position:absolute;
+  top:10px; right:14px;
+  background:none;
+  border:none;
+  color:var(--muted);
+  cursor:pointer;
+  font-size:1.2rem;
+  transition:color 0.15s;
+}
+.modal-close:hover { color:var(--text); }
+.image-modal {
+  max-width:min(92vw, 920px);
+  padding:18px;
+}
+.image-modal img {
+  width:100%;
+  max-height:76vh;
+  object-fit:contain;
+  display:block;
+  border-radius:4px;
+  background:var(--surface);
+}
+.image-modal .modal-note {
+  margin:10px 0 0;
+}
+
+/* â”€â”€â”€ MERGE OVERLAY â”€â”€â”€ */
+#merge-overlay {
+  position:fixed;
+  inset:0;
+  background:rgba(12,10,6,0.95);
+  z-index:200;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  display:none;
+}
+#merge-overlay.show { display:flex; }
+.merge-stage {
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:24px;
+}
+.merge-card {
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:6px;
+  overflow:hidden;
+  width:90px;
+  text-align:center;
+  animation:slideLeft 0.5s ease;
+}
+.merge-card:last-of-type { animation:slideRight 0.5s ease; }
+@keyframes slideLeft  { from{transform:translateX(-60px);opacity:0}to{transform:none;opacity:1} }
+@keyframes slideRight { from{transform:translateX(60px);opacity:0}to{transform:none;opacity:1} }
+.merge-card img { width:100%; aspect-ratio:1; object-fit:cover; display:block; }
+.merge-card-name {
+  font-family:'Cinzel',serif;
+  font-size:0.6rem;
+  letter-spacing:0.06em;
+  color:var(--gold2);
+  padding:6px;
+}
+.merge-plus { font-size:2rem; color:var(--gold); flex-shrink:0; }
+.merge-arrow { font-size:1.5rem; color:var(--border2); flex-shrink:0; }
+
+.merge-result {
+  background:var(--surface2);
+  border:2px solid var(--gold);
+  border-radius:8px;
+  overflow:hidden;
+  width:130px;
+  text-align:center;
+  box-shadow:0 0 40px var(--glow), 0 0 80px rgba(201,168,76,0.1);
+  animation:resultReveal 0.6s 0.6s both;
+}
+@keyframes resultReveal {
+  0%{transform:scale(0.4);opacity:0;filter:brightness(3)}
+  60%{transform:scale(1.1)}
+  100%{transform:scale(1);opacity:1;filter:brightness(1)}
+}
+.merge-result img { width:100%; aspect-ratio:1; object-fit:cover; display:block; }
+.merge-result-name {
+  font-family:'Cinzel',serif;
+  font-size:0.75rem;
+  letter-spacing:0.08em;
+  color:var(--gold);
+  padding:8px;
+}
+
+.merge-title {
+  font-family:'Cinzel Decorative',serif;
+  font-size:1.3rem;
+  color:var(--gold);
+  text-align:center;
+  letter-spacing:0.05em;
+  margin-bottom:8px;
+  text-shadow:0 0 30px rgba(201,168,76,0.6);
+  animation:titleIn 0.5s 0.3s both;
+}
+@keyframes titleIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+.merge-desc {
+  font-style:italic;
+  color:var(--muted2);
+  font-size:0.85rem;
+  text-align:center;
+  max-width:260px;
+  margin-bottom:20px;
+  line-height:1.5;
+  animation:titleIn 0.5s 0.5s both;
+}
+.particle-ring {
+  position:absolute;
+  width:200px; height:200px;
+  border-radius:50%;
+  border:1px solid rgba(201,168,76,0.15);
+  animation:ripple 1.5s 0.3s infinite;
+  pointer-events:none;
+}
+.particle-ring:nth-child(2){ width:280px;height:280px;animation-delay:0.5s; }
+.particle-ring:nth-child(3){ width:360px;height:360px;animation-delay:0.9s; }
+@keyframes ripple{0%{transform:scale(0.5);opacity:0.6}100%{transform:scale(1.5);opacity:0}}
+
+/* â”€â”€â”€ TOAST â”€â”€â”€ */
+#toast {
+  position:fixed;
+  bottom:20px; left:50%;
+  transform:translateX(-50%);
+  background:var(--surface2);
+  border:1px solid var(--gold);
+  color:var(--gold2);
+  font-family:'Cinzel',serif;
+  font-size:0.65rem;
+  letter-spacing:0.08em;
+  padding:10px 20px;
+  border-radius:20px;
+  display:none;
+  z-index:300;
+  white-space:nowrap;
+  box-shadow:0 8px 30px rgba(0,0,0,0.5);
+}
+#toast.err { border-color:var(--danger); color:var(--danger); }
+#toast.show { display:block; animation:toastIn 0.25s ease; }
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+</style>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<!-- MERGE OVERLAY -->
+<div id="merge-overlay">
+  <div class="particle-ring"></div>
+  <div class="particle-ring"></div>
+  <div class="particle-ring"></div>
+  <div class="merge-title" id="mo-title">Fusion Complete</div>
+  <div class="merge-stage" id="mo-stage"></div>
+  <div class="merge-result" id="mo-result"></div>
+  <div class="merge-desc" id="mo-desc"></div>
+  <button class="btn btn-ghost" onclick="closeMerge()">Continue â†’</button>
+</div>
+
+<!-- QR MODAL -->
+<div class="modal-bg" id="qr-modal" style="display:none" onclick="if(event.target===this)closeQR()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeQR()">âœ•</button>
+    <div class="modal-name" id="qr-modal-name"></div>
+    <div class="qr-holder"><div id="qr-modal-holder"></div></div>
+    <div class="modal-note">Print this or display it for others to scan</div>
+    <button class="btn btn-ghost btn-sm" onclick="closeQR()">Done</button>
+  </div>
+</div>
+
+<!-- IMAGE MODAL -->
+<div class="modal-bg" id="image-modal" style="display:none" onclick="if(event.target===this)closeImageModal()">
+  <div class="modal image-modal">
+    <button class="modal-close" onclick="closeImageModal()">âœ•</button>
+    <div class="modal-name" id="image-modal-name"></div>
+    <img id="image-modal-img" alt="">
+    <div class="modal-note" id="image-modal-desc"></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="logo">
+    Alchemiq
+    <sub>scan Â· fuse Â· discover</sub>
+  </div>
+  <div class="header-note">Scan items to collect them. Certain combinations unlock fusions.</div>
+</header>
+
+<!-- TABS -->
+<nav class="tabs">
+  <div class="tab active" id="t-forge" onclick="tab('forge')">Inventory</div>
+  <div class="tab" id="t-scan" onclick="tab('scan')">â—Ž Scan</div>
+  <div class="tab" id="t-fusion" onclick="tab('fusion')">âš— Fusion<span class="badge" id="fusion-badge" style="display:none">0</span></div>
+</nav>
+
+<!-- â•â• FORGE PANEL â•â• -->
+<div class="panel active" id="p-forge">
+  <div class="codex-wrap">
+    <div class="sec-head">
+      <div class="sec-title">Inventory</div>
+      <span style="font-style:italic;font-size:0.78rem;color:var(--muted)">click an item to view its full image</span>
+    </div>
+    <div class="items-grid" id="items-grid"></div>
+  </div>
+</div>
+
+<!-- â•â• SCAN PANEL â•â• -->
+<div class="panel" id="p-scan">
+  <div class="scan-wrap">
+    <div class="btn-row">
+      <button class="btn btn-gold" id="cam-start" onclick="startCam()">Start Camera</button>
+      <button class="btn btn-ghost" id="cam-stop" onclick="stopCam()" disabled>Stop</button>
+      <button class="btn btn-danger btn-sm" onclick="clearInventory()">Clear Inventory</button>
+    </div>
+
+    <div class="status-pill">
+      <div class="sdot" id="sdot"></div>
+      <span class="stext" id="stext">Camera off</span>
+    </div>
+
+    <div id="video-wrap">
+      <video id="cam" autoplay playsinline muted></video>
+      <canvas id="scan-cv"></canvas>
+      <div class="reticle"><div class="ret-b"></div></div>
+      <div class="scan-hint">align QR within frame</div>
+    </div>
+
+    <div class="inv-title">Collected</div>
+    <div class="inv-grid" id="inv-grid"></div>
+    <div class="empty-state" id="inv-empty">No items collected yet â€” start scanning.</div>
+  </div>
+</div>
+
+<!-- â•â• FUSION PANEL â•â• -->
+<div class="panel" id="p-fusion">
+  <div class="codex-wrap">
+    <div class="sec-title" style="margin-bottom:16px">Fusion</div>
+    <div class="fusion-forge">
+      <div class="form-title">âœ¦ Combine Items</div>
+      <div class="fusion-pair">
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">Item A</label>
+          <select id="f-a"></select>
+        </div>
+        <div class="plus-symbol">+</div>
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">Item B</label>
+          <select id="f-b"></select>
+        </div>
+        <div class="plus-symbol">+</div>
+        <div class="form-row" style="margin-bottom:0">
+          <label class="form-label">Item C</label>
+          <select id="f-c"></select>
+        </div>
+      </div>
+      <button class="btn btn-gold" onclick="manualFuse()">Fuse Items</button>
+      <div class="fusion-note">Matching recipes create a new item and add it to your collected inventory.</div>
+      <div class="fusion-result" id="fusion-result">
+        <div class="empty-state" style="padding:8px 0">Choose items to fuse.</div>
+      </div>
+    </div>
+    <div class="sec-title" style="margin-bottom:16px">Fusion Results</div>
+    <div class="codex-grid" id="codex-grid"></div>
+    <div class="empty-state" id="codex-empty">No fusions made yet.</div>
+  </div>
+</div>
+
+<script>
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• STATE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+let db = {
+  items: [],      // [{id,name,desc,image}]
+  recipes: [],    // [{id,ingA,ingB,resName,resDesc,resImage}]
+  inventory: [],  // [itemId,...]
+  codex: []       // [{recipeId,resName,resDesc,resImage,ingAName,ingBName}]
+};
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• SVG SEEDS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function mkSVG(symbol, c1, c2) {
+  const s = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
+    <defs>
+      <radialGradient id="g${Math.random().toString(36).slice(2)}" cx="38%" cy="32%" r="70%">
+        <stop offset="0%" stop-color="${c1}"/>
+        <stop offset="100%" stop-color="${c2}"/>
+      </radialGradient>
+    </defs>
+    <rect width="200" height="200" fill="url(#g${Math.random().toString(36).slice(2)})"/>
+    <text x="100" y="125" font-size="110" text-anchor="middle">${symbol}</text>
+  </svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(s);
+}
+
+function vaultImage(file) {
+  return 'file:///C:/Users/V15/Desktop/The%20Vault/' + encodeURIComponent(file);
+}
+
+const SEEDS = {
+  items: [
+    { id:'item_zeus',  name:'Zeus',  desc:'King of the Olympian gods, wielder of the thunderbolt', image: vaultImage('Zeus.png') },
+    { id:'item_hera',  name:'Hera',  desc:'Queen of the gods, goddess of marriage and women',     image: vaultImage('Hera.png') },
+    { id:'item_poseidon', name:'Poseidon', desc:'God of the sea, storms, earthquakes, and horses', image: vaultImage('poseidon.png') },
+    { id:'item_demeter', name:'Demeter', desc:'Goddess of grain, harvest, and fertile earth', image: mkSVG('âœ¿','#7fb069','#2f5d34') },
+    { id:'item_adead', name:'adead', desc:'A shadowed relic from the underworld ledger', image: vaultImage('Adead.png') },
+    { id:'item_adonis', name:'adonis', desc:'A beautiful youth bound to spring and longing', image: vaultImage('Adonis.png') },
+    { id:'item_aphrodite', name:'aphrodite', desc:'Goddess of love, beauty, desire, and sea-born grace', image: vaultImage('aphrodite.png') },
+    { id:'item_apollo', name:'apollo', desc:'God of prophecy, music, healing, and the sun', image: vaultImage('Apollo.png') },
+    { id:'item_ares', name:'ares', desc:'God of battle, courage, and conflict', image: vaultImage('ares.png') },
+    { id:'item_artemis', name:'artemis', desc:'Goddess of the hunt, moonlit wilds, and protection', image: vaultImage('Artemis.png') },
+    { id:'item_athena', name:'athena', desc:'Goddess of wisdom, strategy, craft, and invention', image: vaultImage('Athena.png') },
+    { id:'item_calcium', name:'calcium', desc:'A pale mineral spark for bone, shell, and stone', image: vaultImage('Calcium.png') },
+    { id:'item_ceres', name:'ceres', desc:'Roman goddess of grain, harvest, and the fertile field', image: vaultImage('Ceres.png') },
+    { id:'item_daphne', name:'daphne', desc:'A laurel-bound nymph of flight and transformation', image: vaultImage('Daphne.png') },
+    { id:'item_david', name:'david', desc:'A mortal hero with a steady hand and brave heart', image: vaultImage('David.png') },
+    { id:'item_dionysus', name:'dionysus', desc:'God of wine, revelry, theater, and transformation', image: vaultImage('Dionysus.png') },
+    { id:'item_europa', name:'europa', desc:'A Phoenician princess carried into myth', image: vaultImage('Europa.png') },
+    { id:'item_festival', name:'festival', desc:'A bright rite of music, masks, and offerings', image: vaultImage('Festival.png') },
+    { id:'item_hades', name:'hades', desc:'Lord of the underworld and keeper of hidden wealth', image: vaultImage('Hades.png') },
+    { id:'item_hephaestus', name:'hephaestus', desc:'God of forge-fire, craft, metal, and ingenious making', image: vaultImage('hephaestus.png') },
+    { id:'item_heremes', name:'heremes', desc:'A swift messenger-name with winged feet', image: vaultImage('hermes.png') },
+    { id:'item_iphis', name:'iphis', desc:'A name of metamorphosis, vow, and changed fate', image: vaultImage('Iphis.png') },
+    { id:'item_iphislong', name:'iphislong', desc:'An extended echo of Iphis in the codex', image: vaultImage('Iphislong.png') },
+    { id:'item_isis', name:'isis', desc:'A great goddess of magic, healing, and restoration', image: vaultImage('Isis.png') },
+    { id:'item_maiden', name:'maiden', desc:'A young figure at the threshold of transformation', image: vaultImage('maiden.png') },
+    { id:'item_poserpinaunder', name:'poserpinaunder', desc:'Proserpina in her underworld aspect', image: vaultImage('Poserpinaunder.png') },
+    { id:'item_poserpinaharvest', name:'poserpinaharvest', desc:'Proserpina in her harvest aspect', image: vaultImage('PoserpinaHarvest.png') },
+    { id:'item_proserpina', name:'proserpina', desc:'Roman queen of spring return and the underworld', image: vaultImage('proserpina.png') },
+    { id:'item_pygmalion', name:'pygmalion', desc:'A sculptor whose longing awakens marble', image: vaultImage('Pygmalion.png') },
+    { id:'item_realmaiden', name:'realmaiden', desc:'A maiden made real from art, wish, and breath', image: vaultImage('Realmaiden.png') },
+    { id:'item_tree', name:'tree', desc:'A rooted form of bark, leaf, memory, and shelter', image: vaultImage('Tree.png') },
+    { id:'item_venus', name:'venus', desc:'Roman goddess of love, beauty, gardens, and desire', image: vaultImage('aphrodite.png') },
+    { id:'item_statue', name:'statue', desc:'A silent carved figure waiting for breath', image: mkSVG('ST','#d5d8dc','#5d6d7e') },
+    { id:'item_io2', name:'io2', desc:'Io beside the stone, caught between hiding and change', image: vaultImage('io2.png') },
+    { id:'item_lost', name:'lost', desc:'A little lost token waiting to be found', image: vaultImage('lost.png') },
+    { id:'item_leto', name:'leto', desc:'Mother of Apollo and Artemis, quiet beneath the stars', image: vaultImage('leto.png') },
+    { id:'item_maia', name:'maia', desc:'Mountain nymph of hidden paths and mother of Hermes', image: vaultImage('maia.png') },
+    { id:'item_hera_lower', name:'hera', desc:'Queen of the gods, shown as a lowercase codex item', image: vaultImage('Hera.png') },
+    { id:'item_poseidon_lower', name:'poseidon', desc:'Sea lord, storm bearer, and shaker of earth', image: vaultImage('poseidon.png') },
+    { id:'item_zeus_lower', name:'zeus', desc:'Thunder-bearing king of the Olympian sky', image: vaultImage('Zeus.png') },
+  ],
+  recipes: [
+    { id:'rec_hermes', ingA:'item_zeus', ingB:'item_hera',
+      resName:'Hermes', resDesc:'Divine messenger, son of Zeus â€” god of travelers, trade, and thieves.',
+      resImage: vaultImage('hermes.png') },
+    { id:'rec_persephone', ingA:'item_demeter', ingB:'item_zeus',
+      resName:'Persephone', resDesc:'Queen of spring growth and the underworld threshold.',
+      resImage: mkSVG('â¦','#c0392b','#4a235a') },
+    { id:'rec_ares', ingA:'item_zeus', ingB:'item_hera',
+      resName:'Ares', resDesc:'God of battle, courage, and the heat of conflict.',
+      resImage: vaultImage('ares.png') },
+    { id:'rec_apollo_daphne_tree', ingA:'item_apollo', ingB:'item_daphne',
+      resName:'tree', resDesc:'Daphne transforms into a rooted laurel tree.',
+      resImage: vaultImage('Tree.png') },
+    { id:'rec_zeus_io2_lost', ingA:'item_zeus', ingB:'item_io2',
+      resName:'lost', resDesc:'Zeus and io2 reveal the lost token.',
+      resImage: vaultImage('lost.png') },
+    { id:'rec_zeus_leto_apollo', ingA:'item_zeus', ingB:'item_leto',
+      resName:'apollo', resDesc:'Zeus and Leto bring forth Apollo.',
+      resImage: vaultImage('Apollo.png') },
+    { id:'rec_zeus_leto_artemis', ingA:'item_zeus', ingB:'item_leto',
+      resName:'artemis', resDesc:'Zeus and Leto bring forth Artemis.',
+      resImage: vaultImage('Artemis.png') },
+    { id:'rec_zeus_maia_hermes', ingA:'item_zeus', ingB:'item_maia',
+      resName:'Hermes', resDesc:'Zeus and Maia bring forth Hermes.',
+      resImage: vaultImage('hermes.png') },
+    { id:'rec_zeus_europa_calcium', ingA:'item_zeus', ingB:'item_europa',
+      resName:'calcium', resDesc:'A pale mineral trace from divine crossing and bone-white myth.',
+      resImage: vaultImage('Calcium.png') },
+    { id:'rec_ceres_proserpina_harvest', ingA:'item_ceres', ingB:'item_proserpina',
+      resName:'poserpinaharvest', resDesc:'Proserpina returns in harvest light.',
+      resImage: vaultImage('PoserpinaHarvest.png') },
+    { id:'rec_hades_proserpina_under', ingA:'item_hades', ingB:'item_proserpina',
+      resName:'poserpinaunder', resDesc:'Proserpina descends into her underworld throne.',
+      resImage: vaultImage('Poserpinaunder.png') },
+    { id:'rec_iphis_isis_iphislong', ingA:'item_iphis', ingB:'item_isis',
+      resName:'iphislong', resDesc:'Isis extends Iphis into a changed and lasting form.',
+      resImage: vaultImage('Iphislong.png') },
+    { id:'rec_pygmalion_maiden_realmaiden', ingA:'item_pygmalion', ingB:'item_maiden',
+      resName:'realmaiden', resDesc:'Pygmalionâ€™s carved maiden wakes into life.',
+      resImage: vaultImage('Realmaiden.png') },
+    { id:'rec_festival_pygmalion_maiden', ingA:'item_festival', ingB:'item_pygmalion',
+      resName:'maiden', resDesc:'Festival and Pygmalion reveal the maiden.',
+      resImage: vaultImage('maiden.png') },
+    { id:'rec_aphrodite_statue_realmaiden', ingA:'item_aphrodite', ingB:'item_statue',
+      resName:'real maiden', resDesc:'Aphrodite gives the statue life as a real maiden.',
+      resImage: vaultImage('Realmaiden.png') },
+    { id:'rec_venus_adonis_adead', ingA:'item_venus', ingB:'item_adonis',
+      resName:'adead', resDesc:'Adonis falls beneath the flower-bright spell of Venus.',
+      resImage: vaultImage('Adead.png') },
+  ]
+};
+
+const REMOVED_ITEM_IDS = new Set([
+  'item_semele',
+  'item_metis',
+  'item_aphrodite_seafoam',
+  'item_sacred_oak',
+  'item_io'
+]);
+
+const REMOVED_RECIPE_IDS = new Set([
+  'rec_athena',
+  'rec_apollo',
+  'rec_artemis',
+  'rec_dionysus',
+  'rec_pegasus',
+  'rec_oracle_oak',
+  'rec_zeus_io_cow'
+]);
+
+const LOCKED_INVENTORY_ITEM_IDS = new Set([
+  'item_adead',
+  'item_apollo',
+  'item_ares',
+  'item_artemis',
+  'item_calcium',
+  'item_david',
+  'item_dionysus',
+  'item_hephaestus',
+  'item_heremes',
+  'item_iphislong',
+  'item_poserpinaunder',
+  'item_poserpinaharvest',
+  'item_realmaiden',
+  'item_tree',
+  'item_lost',
+  'item_statue'
+]);
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• STORAGE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function save() { try { localStorage.setItem('alchemiq_db', JSON.stringify(db)); } catch(e){} }
+function load() {
+  try {
+    const raw = localStorage.getItem('alchemiq_db');
+    if (raw) {
+      db = JSON.parse(raw);
+      mergeSeeds();
+      save();
+      return;
+    }
+  } catch(e){}
+  db.items   = SEEDS.items.slice();
+  db.recipes = SEEDS.recipes.slice();
+  db.inventory = [];
+  db.codex   = [];
+  save();
+}
+
+function mergeSeeds() {
+  db.items = db.items || [];
+  db.recipes = db.recipes || [];
+  db.inventory = db.inventory || [];
+  db.codex = db.codex || [];
+  pruneRemovedSeeds();
+
+  const itemIds = new Set((db.items || []).map(x => x.id));
+  for (const item of SEEDS.items) {
+    const existing = db.items.find(x => x.id === item.id);
+    if (!itemIds.has(item.id)) {
+      db.items.push(item);
+    } else {
+      existing.image = item.image;
+    }
+  }
+
+  const recipeIds = new Set((db.recipes || []).map(x => x.id));
+  for (const recipe of SEEDS.recipes) {
+    const existing = db.recipes.find(x => x.id === recipe.id);
+    if (!recipeIds.has(recipe.id)) {
+      db.recipes.push(recipe);
+    } else {
+      existing.resImage = recipe.resImage;
+    }
+  }
+  syncFusionImages();
+}
+
+function pruneRemovedSeeds() {
+  db.items = db.items.filter(x => !REMOVED_ITEM_IDS.has(x.id) && !REMOVED_RECIPE_IDS.has(x.id.replace(/^fusion_/, '')));
+  db.recipes = db.recipes.filter(x =>
+    !REMOVED_RECIPE_IDS.has(x.id) &&
+    !REMOVED_ITEM_IDS.has(x.ingA) &&
+    !REMOVED_ITEM_IDS.has(x.ingB) &&
+    !REMOVED_ITEM_IDS.has(x.ingC)
+  );
+  db.inventory = db.inventory.filter(id => !REMOVED_ITEM_IDS.has(id) && !REMOVED_RECIPE_IDS.has(id.replace(/^fusion_/, '')));
+  db.codex = db.codex.filter(x => !REMOVED_RECIPE_IDS.has(x.recipeId));
+}
+
+function syncFusionImages() {
+  const byRecipe = new Map(db.recipes.map(x => [x.id, x]));
+  for (const entry of db.codex) {
+    const recipe = byRecipe.get(entry.recipeId);
+    if (recipe) entry.resImage = recipe.resImage;
+  }
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• UTILS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function uid() { return 'x' + Math.random().toString(36).slice(2,10) + Date.now().toString(36); }
+function itemById(id) { return db.items.find(x => x.id === id); }
+function normName(name) { return (name || '').toLowerCase().replace(/\s+/g, ''); }
+function namesMatch(a, b) {
+  const left = normName(a);
+  const right = normName(b);
+  if (left === right) return true;
+  return (left === 'hermes' && (right === 'heremes' || right === 'herems')) ||
+         (right === 'hermes' && (left === 'heremes' || left === 'herems'));
+}
+function isUnlockedForInventory(item) {
+  if (!LOCKED_INVENTORY_ITEM_IDS.has(item.id)) return true;
+  return db.codex.some(entry => namesMatch(entry.resName, item.name));
+}
+function thumb(item, size=38) {
+  if (!item) return `<div style="width:${size}px;height:${size}px;background:var(--surface3);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:${size*0.5}px">?</div>`;
+  return `<img src="${item.image}" style="width:${size}px;height:${size}px;object-fit:cover;border-radius:3px;border:1px solid var(--border)">`;
+}
+
+let toastT;
+function toast(msg, err=false) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show' + (err?' err':'');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => el.className='', 2400);
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• TABS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function tab(t) {
+  ['forge','scan','fusion'].forEach(id => {
+    document.getElementById('p-'+id).classList.toggle('active', id===t);
+    document.getElementById('t-'+id).classList.toggle('active', id===t);
+  });
+  if (t==='fusion') renderFusion();
+  if (t==='scan')  renderInventory();
+}
+function subTab(t) {
+  ['items','recipes'].forEach(id => {
+    document.getElementById('sp-'+id).classList.toggle('active', id===t);
+    document.getElementById('st-'+id).classList.toggle('active', id===t);
+  });
+  if (t==='recipes') populateRecipeSelects();
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• IMAGE UPLOAD â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+let stagingImgs = {};
+function previewUpload(inputId, lblId, previewId) {
+  const file = document.getElementById(inputId).files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = ev => {
+    stagingImgs[inputId] = ev.target.result;
+    const prev = document.getElementById(previewId);
+    prev.innerHTML = `<img class="thumb" src="${ev.target.result}" style="width:36px;height:36px;object-fit:cover;border-radius:3px">`;
+    const txt = document.getElementById(inputId.replace('-img','-upload-text').replace('i-img','i-upload-text').replace('r-img','r-upload-text'));
+    if (txt) txt.textContent = file.name;
+  };
+  reader.readAsDataURL(file);
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CREATE ITEM â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function createItem() {
+  const name = document.getElementById('i-name').value.trim();
+  if (!name) { toast('Enter a name', true); return; }
+  const img = stagingImgs['i-img'] || mkSVG('âœ¦','#8e7456','#3a2e1a');
+  const item = { id: uid(), name, desc: document.getElementById('i-desc').value.trim(), image: img };
+  db.items.push(item);
+  save();
+  stagingImgs['i-img'] = null;
+  document.getElementById('i-name').value = '';
+  document.getElementById('i-desc').value = '';
+  document.getElementById('i-preview').innerHTML = 'ðŸ–¼';
+  document.getElementById('i-upload-text').textContent = 'Choose an imageâ€¦';
+  document.getElementById('i-img').value = '';
+  renderItems();
+  toast(`âœ¦ ${name} added`);
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CREATE RECIPE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function createRecipe() {
+  const ingA  = document.getElementById('r-a').value;
+  const ingB  = document.getElementById('r-b').value;
+  const ingC  = document.getElementById('r-c').value;
+  const name  = document.getElementById('r-name').value.trim();
+  if (!ingA || !ingB) { toast('Choose both ingredients', true); return; }
+  if (ingA === ingB)  { toast('Ingredients must differ', true); return; }
+  if (ingC && (ingC === ingA || ingC === ingB)) { toast('Ingredients must differ', true); return; }
+  if (!name)          { toast('Enter a result name', true); return; }
+  const img = stagingImgs['r-img'] || mkSVG('âœ§','#4a90d9','#1a3a6e');
+  const recipe = {
+    id: uid(), ingA, ingB, ingC,
+    resName: name,
+    resDesc: document.getElementById('r-desc').value.trim(),
+    resImage: img
+  };
+  db.recipes.push(recipe);
+  save();
+  stagingImgs['r-img'] = null;
+  document.getElementById('r-a').value = '';
+  document.getElementById('r-b').value = '';
+  document.getElementById('r-c').value = '';
+  document.getElementById('r-name').value = '';
+  document.getElementById('r-desc').value = '';
+  document.getElementById('r-preview').innerHTML = 'ðŸ–¼';
+  document.getElementById('r-upload-text').textContent = 'Choose an imageâ€¦';
+  document.getElementById('r-img').value = '';
+  renderRecipes();
+  toast(`âœ¦ Recipe added`);
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• RENDER â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function renderItems() {
+  const g = document.getElementById('items-grid');
+  const visibleItems = db.items.filter(isUnlockedForInventory);
+  g.innerHTML = visibleItems.map(item => `
+    <div class="item-card" onclick="showImage('${item.id}')">
+      ${item.image
+        ? `<img class="card-img" src="${item.image}" alt="${item.name}">`
+        : `<div class="card-img-placeholder">âœ¦</div>`}
+      <div class="card-body">
+        <div class="card-name">${item.name}</div>
+        <div class="card-actions">
+          <button class="card-qr" onclick="event.stopPropagation();showQR('${item.id}')">QR</button>
+          <button class="card-del" onclick="event.stopPropagation();deleteItem('${item.id}')">âœ•</button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function renderRecipes() {
+  const el = document.getElementById('recipes-list');
+  if (!db.recipes.length) {
+    el.innerHTML = '<div class="empty-state">No recipes yet.</div>';
+    return;
+  }
+  el.innerHTML = db.recipes.map(r => {
+    const a = itemById(r.ingA), b = itemById(r.ingB), c = itemById(r.ingC);
+    return `
+      <div class="recipe-card">
+        ${thumb(a,38)}
+        <div class="rc-name">${a?.name||'?'}</div>
+        <div class="rc-sym">+</div>
+        ${thumb(b,38)}
+        <div class="rc-name">${b?.name||'?'}</div>
+        ${r.ingC ? `
+          <div class="rc-sym">+</div>
+          ${thumb(c,38)}
+          <div class="rc-name">${c?.name||'?'}</div>
+        ` : ''}
+        <div class="rc-sym">â†’</div>
+        ${r.resImage?`<img class="rc-img" src="${r.resImage}">`:''}
+        <div class="rc-name" style="color:var(--gold)">${r.resName}</div>
+        <button class="rc-del" onclick="deleteRecipe('${r.id}')">âœ•</button>
+      </div>`;
+  }).join('');
+}
+
+function populateRecipeSelects() {
+  const opts = db.items.map(i => `<option value="${i.id}">${i.name}</option>`).join('');
+  document.getElementById('r-a').innerHTML = '<option value="">â€” Item A â€”</option>' + opts;
+  document.getElementById('r-b').innerHTML = '<option value="">â€” Item B â€”</option>' + opts;
+  document.getElementById('r-c').innerHTML = '<option value="">â€” Item C â€”</option>' + opts;
+}
+
+function populateFusionSelects() {
+  const opts = db.items.map(i => `<option value="${i.id}">${i.name}</option>`).join('');
+  document.getElementById('f-a').innerHTML = '<option value="">â€” Item A â€”</option>' + opts;
+  document.getElementById('f-b').innerHTML = '<option value="">â€” Item B â€”</option>' + opts;
+  document.getElementById('f-c').innerHTML = '<option value="">â€” Item C â€”</option>' + opts;
+}
+
+function renderInventory() {
+  const g = document.getElementById('inv-grid');
+  const empty = document.getElementById('inv-empty');
+  if (!db.inventory.length) { g.innerHTML=''; empty.style.display='block'; return; }
+  empty.style.display='none';
+  g.innerHTML = db.inventory.map(id => {
+    const item = itemById(id);
+    if (!item) return '';
+    return `<div class="inv-card" onclick="showImage('${item.id}')">
+      <img src="${item.image}" alt="${item.name}">
+      <div class="inv-name">${item.name}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderFusion() {
+  populateFusionSelects();
+  const g  = document.getElementById('codex-grid');
+  const em = document.getElementById('codex-empty');
+  const badge = document.getElementById('fusion-badge');
+  if (!db.codex.length) { g.innerHTML=''; em.style.display='block'; badge.style.display='none'; return; }
+  em.style.display='none';
+  badge.style.display='inline';
+  badge.textContent = db.codex.length;
+  g.innerHTML = db.codex.map(c => `
+    <div class="codex-card">
+      ${c.resImage?`<img src="${c.resImage}" alt="${c.resName}">`:''}
+      <div class="cc-body">
+        <div class="cc-name">${c.resName}</div>
+        <div class="cc-recipe">${[c.ingAName, c.ingBName, c.ingCName].filter(Boolean).join(' + ')}</div>
+        ${c.resDesc?`<div class="cc-desc">${c.resDesc}</div>`:''}
+      </div>
+    </div>`).join('');
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• DELETE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function recipeIngredientIds(recipe) {
+  return [recipe.ingA, recipe.ingB, recipe.ingC].filter(Boolean);
+}
+
+function recipeIngredientNames(recipe) {
+  return recipeIngredientIds(recipe).map(id => (itemById(id)?.name || '').toLowerCase());
+}
+
+function sameSet(a, b) {
+  if (a.length !== b.length) return false;
+  const left = a.slice().sort();
+  const right = b.slice().sort();
+  return left.every((value, index) => value === right[index]);
+}
+
+function findRecipesForItems(ids) {
+  const selectedIds = ids.filter(Boolean);
+  const selectedNames = selectedIds.map(id => (itemById(id)?.name || '').toLowerCase());
+  return db.recipes.filter(r =>
+    sameSet(recipeIngredientIds(r), selectedIds) ||
+    sameSet(recipeIngredientNames(r), selectedNames)
+  );
+}
+
+function resultItemId(recipe) {
+  return 'fusion_' + recipe.id;
+}
+
+function ensureFusionResultItem(recipe) {
+  const existingByName = db.items.find(x => namesMatch(recipe.resName, x.name));
+  const id = existingByName?.id || resultItemId(recipe);
+  let item = existingByName || itemById(id);
+  if (!item) {
+    item = {
+      id,
+      name: recipe.resName,
+      desc: recipe.resDesc || 'Created by fusion',
+      image: recipe.resImage || mkSVG('âœ§','#4a90d9','#1a3a6e')
+    };
+    db.items.push(item);
+  }
+  if (!db.inventory.includes(id)) db.inventory.push(id);
+  return item;
+}
+
+function recordFusion(recipe, iA, iB, iC) {
+  if (!db.codex.some(c=>c.recipeId===recipe.id)) {
+    db.codex.push({
+      recipeId: recipe.id,
+      resName:  recipe.resName,
+      resDesc:  recipe.resDesc,
+      resImage: recipe.resImage,
+      ingAName: iA?.name||'?',
+      ingBName: iB?.name||'?',
+      ingCName: iC?.name||''
+    });
+  }
+  return ensureFusionResultItem(recipe);
+}
+
+function manualFuse() {
+  const aId = document.getElementById('f-a').value;
+  const bId = document.getElementById('f-b').value;
+  const cId = document.getElementById('f-c').value;
+  const box = document.getElementById('fusion-result');
+  if (!aId || !bId) { toast('Choose at least two items', true); return; }
+  const selectedIds = [aId, bId, cId].filter(Boolean);
+  if (new Set(selectedIds).size !== selectedIds.length) { toast('Items must differ', true); return; }
+
+  const recipes = findRecipesForItems(selectedIds);
+  const iA = itemById(aId);
+  const iB = itemById(bId);
+  const iC = itemById(cId);
+  if (!recipes.length) {
+    box.innerHTML = '<div class="empty-state" style="padding:8px 0">No recipe found for that combination.</div>';
+    toast('No fusion found', true);
+    return;
+  }
+
+  const resultItems = recipes.map(recipe => recordFusion(recipe, iA, iB, iC));
+  save();
+  renderItems();
+  renderInventory();
+  renderFusion();
+  box.innerHTML = resultItems.map(resultItem => `
+    <div class="recipe-card">
+      ${thumb(iA,38)}
+      <div class="rc-name">${iA?.name||'?'}</div>
+      <div class="rc-sym">+</div>
+      ${thumb(iB,38)}
+      <div class="rc-name">${iB?.name||'?'}</div>
+      ${iC ? `
+        <div class="rc-sym">+</div>
+        ${thumb(iC,38)}
+        <div class="rc-name">${iC.name}</div>
+      ` : ''}
+      <div class="rc-sym">â†’</div>
+      ${resultItem.image?`<img class="rc-img" src="${resultItem.image}">`:''}
+      <div class="rc-name" style="color:var(--gold)">${resultItem.name}</div>
+    </div>`).join('');
+  toast(`âœ¦ ${resultItems.map(x => x.name).join(' + ')} created`);
+  triggerFusion(recipes[0], iA, iB, iC);
+}
+
+function deleteItem(id) {
+  db.items = db.items.filter(x=>x.id!==id);
+  db.recipes = db.recipes.filter(r=>r.ingA!==id && r.ingB!==id && r.ingC!==id);
+  db.inventory = db.inventory.filter(x=>x!==id);
+  save(); renderItems(); renderInventory();
+  toast('Item removed');
+}
+function deleteRecipe(id) {
+  db.recipes = db.recipes.filter(x=>x.id!==id);
+  save(); renderRecipes();
+  toast('Recipe removed');
+}
+function clearInventory() {
+  db.inventory = [];
+  save(); renderInventory();
+  toast('Inventory cleared');
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• QR MODAL â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+let qrInst = null;
+function showQR(itemId) {
+  const item = itemById(itemId);
+  if (!item) return;
+  document.getElementById('qr-modal-name').textContent = item.name;
+  const holder = document.getElementById('qr-modal-holder');
+  holder.innerHTML = '';
+  if (qrInst) { try { qrInst.clear(); } catch(e){} }
+  qrInst = new QRCode(holder, {
+    text: `ALCHEMIQ:v1:${item.id}`,
+    width: 200, height: 200,
+    colorDark: '#000000', colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.M
+  });
+  document.getElementById('qr-modal').style.display = 'flex';
+}
+function closeQR() { document.getElementById('qr-modal').style.display = 'none'; }
+
+function showImage(itemId) {
+  const item = itemById(itemId);
+  if (!item || !item.image) return;
+  document.getElementById('image-modal-name').textContent = item.name;
+  const img = document.getElementById('image-modal-img');
+  img.src = item.image;
+  img.alt = item.name;
+  document.getElementById('image-modal-desc').textContent = item.desc || '';
+  document.getElementById('image-modal').style.display = 'flex';
+}
+function closeImageModal() {
+  document.getElementById('image-modal').style.display = 'none';
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CAMERA â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+let camStream=null, scanning=false, raf=null, lastCode=null, lastCodeTs=0;
+
+async function startCam() {
+  try {
+    camStream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode:{ideal:'environment'}, width:{ideal:1280}, height:{ideal:720} }
+    });
+    const video = document.getElementById('cam');
+    video.srcObject = camStream;
+    document.getElementById('video-wrap').classList.add('on');
+    document.getElementById('cam-start').disabled = true;
+    document.getElementById('cam-stop').disabled  = false;
+    setStatus('on','Scanningâ€¦');
+    scanning = true;
+    video.onloadedmetadata = loop;
+  } catch(e) { toast('Camera error: '+e.message, true); }
+}
+function stopCam() {
+  scanning = false;
+  if (raf) cancelAnimationFrame(raf);
+  if (camStream) { camStream.getTracks().forEach(t=>t.stop()); camStream=null; }
+  document.getElementById('video-wrap').classList.remove('on');
+  document.getElementById('cam-start').disabled = false;
+  document.getElementById('cam-stop').disabled  = true;
+  setStatus('','Camera off');
+}
+function loop() {
+  if (!scanning) return;
+  const video = document.getElementById('cam');
+  const cv    = document.getElementById('scan-cv');
+  if (video.readyState === video.HAVE_ENOUGH_DATA) {
+    cv.width=video.videoWidth; cv.height=video.videoHeight;
+    const ctx = cv.getContext('2d');
+    ctx.drawImage(video,0,0);
+    const img = ctx.getImageData(0,0,cv.width,cv.height);
+    const code = jsQR(img.data, img.width, img.height, {inversionAttempts:'dontInvert'});
+    if (code) {
+      const now=Date.now();
+      if (code.data!==lastCode || now-lastCodeTs>1600) {
+        lastCode=code.data; lastCodeTs=now;
+        handleCode(code.data);
+      }
+    }
+  }
+  raf = requestAnimationFrame(loop);
+}
+function setStatus(type, msg) {
+  const d=document.getElementById('sdot');
+  d.className='sdot'+(type?' '+type:'');
+  document.getElementById('stext').textContent=msg;
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• HANDLE SCAN â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function handleCode(text) {
+  if (!text.startsWith('ALCHEMIQ:v1:')) return;
+  const id = text.slice('ALCHEMIQ:v1:'.length);
+  const item = itemById(id);
+  if (!item) { setStatus('','Unknown item'); return; }
+
+  setStatus('hit', `${item.name} detected!`);
+  setTimeout(()=>setStatus('on','Scanningâ€¦'), 1000);
+
+  if (db.inventory.includes(id)) {
+    toast(`Already have ${item.name}`);
+    return;
+  }
+
+  db.inventory.push(id);
+  save();
+  renderInventory();
+  toast(`âœ¦ ${item.name} collected!`);
+  checkFusions(id);
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• FUSION CHECK â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function checkFusions(newId) {
+  let firstUnlocked = null;
+  for (const recipe of db.recipes) {
+    const hasA = db.inventory.includes(recipe.ingA);
+    const hasB = db.inventory.includes(recipe.ingB);
+    const hasC = !recipe.ingC || db.inventory.includes(recipe.ingC);
+    if (!hasA || !hasB || !hasC) continue;
+    if (db.codex.some(c=>c.recipeId===recipe.id)) continue; // already discovered
+
+    const iA = itemById(recipe.ingA);
+    const iB = itemById(recipe.ingB);
+    const iC = itemById(recipe.ingC);
+
+    recordFusion(recipe, iA, iB, iC);
+    save();
+
+    // Update fusion badge
+    const badge = document.getElementById('fusion-badge');
+    badge.style.display='inline';
+    badge.textContent = db.codex.length;
+    renderItems();
+    renderInventory();
+    renderFusion();
+
+    if (!firstUnlocked) firstUnlocked = { recipe, iA, iB, iC };
+  }
+  if (firstUnlocked) {
+    setTimeout(() => triggerFusion(firstUnlocked.recipe, firstUnlocked.iA, firstUnlocked.iB, firstUnlocked.iC), 400);
+  }
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• MERGE ANIMATION â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function triggerFusion(recipe, iA, iB, iC) {
+  const overlay = document.getElementById('merge-overlay');
+  document.getElementById('mo-title').textContent = 'âš— Fusion Unlocked';
+
+  const stage = document.getElementById('mo-stage');
+  stage.innerHTML = `
+    <div class="merge-card">
+      <img src="${iA.image}" alt="${iA.name}">
+      <div class="merge-card-name">${iA.name}</div>
+    </div>
+    <div class="merge-plus">+</div>
+    <div class="merge-card" style="animation-name:slideRight">
+      <img src="${iB.image}" alt="${iB.name}">
+      <div class="merge-card-name">${iB.name}</div>
+    </div>
+    ${iC ? `
+      <div class="merge-plus">+</div>
+      <div class="merge-card" style="animation-name:slideRight">
+        <img src="${iC.image}" alt="${iC.name}">
+        <div class="merge-card-name">${iC.name}</div>
+      </div>
+    ` : ''}
+    <div class="merge-arrow">â†’</div>
+  `;
+
+  const res = document.getElementById('mo-result');
+  res.innerHTML = `
+    <img src="${recipe.resImage}" alt="${recipe.resName}">
+    <div class="merge-result-name">${recipe.resName}</div>
+  `;
+
+  document.getElementById('mo-desc').textContent = recipe.resDesc || '';
+  overlay.classList.add('show');
+}
+function closeMerge() {
+  document.getElementById('merge-overlay').classList.remove('show');
+}
+
+// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• INIT â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+load();
+renderItems();
+renderInventory();
+renderFusion();
+</script>
+</body>
+</html>
