@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -48,7 +48,7 @@ body::before {
   z-index:0;
 }
 
-/* â”€â”€â”€ HEADER â”€â”€â”€ */
+/* ─── HEADER ─── */
 .header {
   position:relative;
   z-index:1;
@@ -94,7 +94,7 @@ body::before {
   line-height:1.4;
 }
 
-/* â”€â”€â”€ TABS â”€â”€â”€ */
+/* ─── TABS ─── */
 .tabs {
   position:relative;
   z-index:1;
@@ -132,11 +132,11 @@ body::before {
   line-height:1.4;
 }
 
-/* â”€â”€â”€ PANELS â”€â”€â”€ */
+/* ─── PANELS ─── */
 .panel { display:none; position:relative; z-index:1; }
 .panel.active { display:block; }
 
-/* â”€â”€â”€ FORGE PANEL â”€â”€â”€ */
+/* ─── FORGE PANEL ─── */
 .sub-tabs {
   display:flex;
   gap:0;
@@ -163,7 +163,7 @@ body::before {
 .sub-panel { display:none; padding:16px 20px 24px; background:var(--surface2); border-top:1px solid var(--border); }
 .sub-panel.active { display:block; }
 
-/* â”€â”€â”€ SECTION HEADER â”€â”€â”€ */
+/* ─── SECTION HEADER ─── */
 .sec-head {
   display:flex;
   align-items:center;
@@ -178,7 +178,7 @@ body::before {
   color:var(--muted2);
 }
 
-/* â”€â”€â”€ BUTTONS â”€â”€â”€ */
+/* ─── BUTTONS ─── */
 .btn {
   font-family:'Cinzel',serif;
   font-size:0.6rem;
@@ -208,7 +208,7 @@ body::before {
 .btn-danger { background:transparent; color:var(--danger); border:1px solid rgba(192,57,43,0.3); }
 .btn-danger:hover { background:rgba(192,57,43,0.08); border-color:var(--danger); }
 
-/* â”€â”€â”€ FORM â”€â”€â”€ */
+/* ─── FORM ─── */
 .form-block {
   background:var(--surface3);
   border:1px solid var(--border);
@@ -250,7 +250,7 @@ input[type=text]:focus, textarea:focus, select:focus {
   border-color:var(--gold);
   box-shadow:0 0 0 2px rgba(201,168,76,0.1);
 }
-select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a6e58'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 10px center; padding-right:28px; cursor:pointer; }
+select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a6e58'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 8px center; padding-right:28px; }
 textarea { resize:vertical; min-height:60px; }
 
 .upload-btn {
@@ -301,7 +301,7 @@ textarea { resize:vertical; min-height:60px; }
   line-height:1;
 }
 
-/* â”€â”€â”€ ITEM CARDS â”€â”€â”€ */
+/* ─── ITEM CARDS ─── */
 .items-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:10px; }
 .item-card {
   background:var(--surface);
@@ -372,7 +372,7 @@ textarea { resize:vertical; min-height:60px; }
 }
 .item-card .card-qr:hover { border-color:var(--gold); color:var(--gold); }
 
-/* â”€â”€â”€ RECIPE CARDS â”€â”€â”€ */
+/* ─── RECIPE CARDS ─── */
 .recipe-card {
   background:var(--surface);
   border:1px solid var(--border);
@@ -413,7 +413,7 @@ textarea { resize:vertical; min-height:60px; }
 }
 .recipe-card .rc-del:hover { color:var(--danger); border-color:rgba(192,57,43,0.3); }
 
-/* â”€â”€â”€ SCAN PANEL â”€â”€â”€ */
+/* ─── SCAN PANEL ─── */
 .scan-wrap { padding:16px 20px 24px; }
 .btn-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px; }
 
@@ -524,7 +524,7 @@ textarea { resize:vertical; min-height:60px; }
   text-align:center;
 }
 
-/* â”€â”€â”€ CODEX PANEL â”€â”€â”€ */
+/* ─── CODEX PANEL ─── */
 .codex-wrap { padding:20px; }
 .fusion-forge {
   background:var(--surface2);
@@ -596,7 +596,7 @@ textarea { resize:vertical; min-height:60px; }
   line-height:1.4;
 }
 
-/* â”€â”€â”€ QR MODAL â”€â”€â”€ */
+/* ─── QR MODAL ─── */
 .modal-bg {
   position:fixed;
   inset:0;
@@ -677,7 +677,7 @@ textarea { resize:vertical; min-height:60px; }
   margin:10px 0 0;
 }
 
-/* â”€â”€â”€ MERGE OVERLAY â”€â”€â”€ */
+/* ─── MERGE OVERLAY ─── */
 #merge-overlay {
   position:fixed;
   inset:0;
@@ -777,7 +777,7 @@ textarea { resize:vertical; min-height:60px; }
 .particle-ring:nth-child(3){ width:360px;height:360px;animation-delay:0.9s; }
 @keyframes ripple{0%{transform:scale(0.5);opacity:0.6}100%{transform:scale(1.5);opacity:0}}
 
-/* â”€â”€â”€ TOAST â”€â”€â”€ */
+/* ─── TOAST ─── */
 #toast {
   position:fixed;
   bottom:20px; left:50%;
@@ -817,13 +817,13 @@ textarea { resize:vertical; min-height:60px; }
   <div class="merge-stage" id="mo-stage"></div>
   <div class="merge-result" id="mo-result"></div>
   <div class="merge-desc" id="mo-desc"></div>
-  <button class="btn btn-ghost" onclick="closeMerge()">Continue â†’</button>
+  <button class="btn btn-ghost" onclick="closeMerge()">Continue →</button>
 </div>
 
 <!-- QR MODAL -->
 <div class="modal-bg" id="qr-modal" style="display:none" onclick="if(event.target===this)closeQR()">
   <div class="modal">
-    <button class="modal-close" onclick="closeQR()">âœ•</button>
+    <button class="modal-close" onclick="closeQR()">✕</button>
     <div class="modal-name" id="qr-modal-name"></div>
     <div class="qr-holder"><div id="qr-modal-holder"></div></div>
     <div class="modal-note">Print this or display it for others to scan</div>
@@ -834,7 +834,7 @@ textarea { resize:vertical; min-height:60px; }
 <!-- IMAGE MODAL -->
 <div class="modal-bg" id="image-modal" style="display:none" onclick="if(event.target===this)closeImageModal()">
   <div class="modal image-modal">
-    <button class="modal-close" onclick="closeImageModal()">âœ•</button>
+    <button class="modal-close" onclick="closeImageModal()">✕</button>
     <div class="modal-name" id="image-modal-name"></div>
     <img id="image-modal-img" alt="">
     <div class="modal-note" id="image-modal-desc"></div>
@@ -845,7 +845,7 @@ textarea { resize:vertical; min-height:60px; }
 <header class="header">
   <div class="logo">
     Alchemiq
-    <sub>scan Â· fuse Â· discover</sub>
+    <sub>scan · fuse · discover</sub>
   </div>
   <div class="header-note">Scan items to collect them. Certain combinations unlock fusions.</div>
 </header>
@@ -853,11 +853,11 @@ textarea { resize:vertical; min-height:60px; }
 <!-- TABS -->
 <nav class="tabs">
   <div class="tab active" id="t-forge" onclick="tab('forge')">Inventory</div>
-  <div class="tab" id="t-scan" onclick="tab('scan')">â—Ž Scan</div>
-  <div class="tab" id="t-fusion" onclick="tab('fusion')">âš— Fusion<span class="badge" id="fusion-badge" style="display:none">0</span></div>
+  <div class="tab" id="t-scan" onclick="tab('scan')">◎ Scan</div>
+  <div class="tab" id="t-fusion" onclick="tab('fusion')">⚗ Fusion<span class="badge" id="fusion-badge" style="display:none">0</span></div>
 </nav>
 
-<!-- â•â• FORGE PANEL â•â• -->
+<!-- •• FORGE PANEL •• -->
 <div class="panel active" id="p-forge">
   <div class="codex-wrap">
     <div class="sec-head">
@@ -868,7 +868,7 @@ textarea { resize:vertical; min-height:60px; }
   </div>
 </div>
 
-<!-- â•â• SCAN PANEL â•â• -->
+<!-- •• SCAN PANEL •• -->
 <div class="panel" id="p-scan">
   <div class="scan-wrap">
     <div class="btn-row">
@@ -891,16 +891,16 @@ textarea { resize:vertical; min-height:60px; }
 
     <div class="inv-title">Collected</div>
     <div class="inv-grid" id="inv-grid"></div>
-    <div class="empty-state" id="inv-empty">No items collected yet â€” start scanning.</div>
+    <div class="empty-state" id="inv-empty">No items collected yet – start scanning.</div>
   </div>
 </div>
 
-<!-- â•â• FUSION PANEL â•â• -->
+<!-- •• FUSION PANEL •• -->
 <div class="panel" id="p-fusion">
   <div class="codex-wrap">
     <div class="sec-title" style="margin-bottom:16px">Fusion</div>
     <div class="fusion-forge">
-      <div class="form-title">âœ¦ Combine Items</div>
+      <div class="form-title">✦ Combine Items</div>
       <div class="fusion-pair">
         <div class="form-row" style="margin-bottom:0">
           <label class="form-label">Item A</label>
@@ -930,31 +930,32 @@ textarea { resize:vertical; min-height:60px; }
 </div>
 
 <script>
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• STATE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ••••••••••••••••••••••••••••••••••••••••••••• STATE
 let db = {
   items: [],      // [{id,name,desc,image}]
-  recipes: [],    // [{id,ingA,ingB,resName,resDesc,resImage}]
+  recipes: [],    // [{id,ingA,ingB,ingC,resName,resDesc,resImage}]
   inventory: [],  // [itemId,...]
-  codex: []       // [{recipeId,resName,resDesc,resImage,ingAName,ingBName}]
+  codex: []       // [{recipeId,resName,resDesc,resImage,ingAName,ingBName,ingCName}]
 };
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• SVG SEEDS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+// ••••••••••••••••••••••••••••••••••••••••••••• UTILS
 function mkSVG(symbol, c1, c2) {
+  const id = Math.random().toString(36).slice(2);
   const s = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200">
     <defs>
-      <radialGradient id="g${Math.random().toString(36).slice(2)}" cx="38%" cy="32%" r="70%">
+      <radialGradient id="g${id}" cx="38%" cy="32%" r="70%">
         <stop offset="0%" stop-color="${c1}"/>
         <stop offset="100%" stop-color="${c2}"/>
       </radialGradient>
     </defs>
-    <rect width="200" height="200" fill="url(#g${Math.random().toString(36).slice(2)})"/>
-    <text x="100" y="125" font-size="110" text-anchor="middle">${symbol}</text>
+    <rect width="200" height="200" fill="url(#g${id})"/>
+    <text x="100" y="125" font-size="110" text-anchor="middle" fill="#fff">${symbol}</text>
   </svg>`;
   return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(s);
 }
 
 function vaultImage(file) {
-  return 'file:///C:/Users/V15/Desktop/The%20Vault/' + encodeURIComponent(file);
+  return 'https://raw.githubusercontent.com/Neutralgenix/Unessay-Pin-collector/main/The%20Vault/' + encodeURIComponent(file);
 }
 
 const SEEDS = {
@@ -962,7 +963,7 @@ const SEEDS = {
     { id:'item_zeus',  name:'Zeus',  desc:'King of the Olympian gods, wielder of the thunderbolt', image: vaultImage('Zeus.png') },
     { id:'item_hera',  name:'Hera',  desc:'Queen of the gods, goddess of marriage and women',     image: vaultImage('Hera.png') },
     { id:'item_poseidon', name:'Poseidon', desc:'God of the sea, storms, earthquakes, and horses', image: vaultImage('poseidon.png') },
-    { id:'item_demeter', name:'Demeter', desc:'Goddess of grain, harvest, and fertile earth', image: mkSVG('âœ¿','#7fb069','#2f5d34') },
+    { id:'item_demeter', name:'Demeter', desc:'Goddess of grain, harvest, and fertile earth', image: mkSVG('✿','#7fb069','#2f5d34') },
     { id:'item_adead', name:'adead', desc:'A shadowed relic from the underworld ledger', image: vaultImage('Adead.png') },
     { id:'item_adonis', name:'adonis', desc:'A beautiful youth bound to spring and longing', image: vaultImage('Adonis.png') },
     { id:'item_aphrodite', name:'aphrodite', desc:'Goddess of love, beauty, desire, and sea-born grace', image: vaultImage('aphrodite.png') },
@@ -979,7 +980,7 @@ const SEEDS = {
     { id:'item_festival', name:'festival', desc:'A bright rite of music, masks, and offerings', image: vaultImage('Festival.png') },
     { id:'item_hades', name:'hades', desc:'Lord of the underworld and keeper of hidden wealth', image: vaultImage('Hades.png') },
     { id:'item_hephaestus', name:'hephaestus', desc:'God of forge-fire, craft, metal, and ingenious making', image: vaultImage('hephaestus.png') },
-    { id:'item_heremes', name:'heremes', desc:'A swift messenger-name with winged feet', image: vaultImage('hermes.png') },
+    { id:'item_hermes', name:'hermes', desc:'Swift messenger with winged feet', image: vaultImage('hermes.png') },
     { id:'item_iphis', name:'iphis', desc:'A name of metamorphosis, vow, and changed fate', image: vaultImage('Iphis.png') },
     { id:'item_iphislong', name:'iphislong', desc:'An extended echo of Iphis in the codex', image: vaultImage('Iphislong.png') },
     { id:'item_isis', name:'isis', desc:'A great goddess of magic, healing, and restoration', image: vaultImage('Isis.png') },
@@ -990,689 +991,402 @@ const SEEDS = {
     { id:'item_pygmalion', name:'pygmalion', desc:'A sculptor whose longing awakens marble', image: vaultImage('Pygmalion.png') },
     { id:'item_realmaiden', name:'realmaiden', desc:'A maiden made real from art, wish, and breath', image: vaultImage('Realmaiden.png') },
     { id:'item_tree', name:'tree', desc:'A rooted form of bark, leaf, memory, and shelter', image: vaultImage('Tree.png') },
-    { id:'item_venus', name:'venus', desc:'Roman goddess of love, beauty, gardens, and desire', image: vaultImage('aphrodite.png') },
+    { id:'item_venus', name:'venus', desc:'Roman goddess of love, beauty, gardens, and desire', image: vaultImage('Venus.png') },
     { id:'item_statue', name:'statue', desc:'A silent carved figure waiting for breath', image: mkSVG('ST','#d5d8dc','#5d6d7e') },
     { id:'item_io2', name:'io2', desc:'Io beside the stone, caught between hiding and change', image: vaultImage('io2.png') },
     { id:'item_lost', name:'lost', desc:'A little lost token waiting to be found', image: vaultImage('lost.png') },
     { id:'item_leto', name:'leto', desc:'Mother of Apollo and Artemis, quiet beneath the stars', image: vaultImage('leto.png') },
     { id:'item_maia', name:'maia', desc:'Mountain nymph of hidden paths and mother of Hermes', image: vaultImage('maia.png') },
-    { id:'item_hera_lower', name:'hera', desc:'Queen of the gods, shown as a lowercase codex item', image: vaultImage('Hera.png') },
-    { id:'item_poseidon_lower', name:'poseidon', desc:'Sea lord, storm bearer, and shaker of earth', image: vaultImage('poseidon.png') },
-    { id:'item_zeus_lower', name:'zeus', desc:'Thunder-bearing king of the Olympian sky', image: vaultImage('Zeus.png') },
+    { id:'item_io', name:'io', desc:'A maiden transformed, caught in eternal metamorphosis', image: vaultImage('Io.png') },
   ],
   recipes: [
-    { id:'rec_hermes', ingA:'item_zeus', ingB:'item_hera',
-      resName:'Hermes', resDesc:'Divine messenger, son of Zeus â€” god of travelers, trade, and thieves.',
-      resImage: vaultImage('hermes.png') },
-    { id:'rec_persephone', ingA:'item_demeter', ingB:'item_zeus',
-      resName:'Persephone', resDesc:'Queen of spring growth and the underworld threshold.',
-      resImage: mkSVG('â¦','#c0392b','#4a235a') },
-    { id:'rec_ares', ingA:'item_zeus', ingB:'item_hera',
-      resName:'Ares', resDesc:'God of battle, courage, and the heat of conflict.',
-      resImage: vaultImage('ares.png') },
-    { id:'rec_apollo_daphne_tree', ingA:'item_apollo', ingB:'item_daphne',
-      resName:'tree', resDesc:'Daphne transforms into a rooted laurel tree.',
-      resImage: vaultImage('Tree.png') },
-    { id:'rec_zeus_io2_lost', ingA:'item_zeus', ingB:'item_io2',
-      resName:'lost', resDesc:'Zeus and io2 reveal the lost token.',
-      resImage: vaultImage('lost.png') },
-    { id:'rec_zeus_leto_apollo', ingA:'item_zeus', ingB:'item_leto',
-      resName:'apollo', resDesc:'Zeus and Leto bring forth Apollo.',
-      resImage: vaultImage('Apollo.png') },
-    { id:'rec_zeus_leto_artemis', ingA:'item_zeus', ingB:'item_leto',
-      resName:'artemis', resDesc:'Zeus and Leto bring forth Artemis.',
-      resImage: vaultImage('Artemis.png') },
-    { id:'rec_zeus_maia_hermes', ingA:'item_zeus', ingB:'item_maia',
-      resName:'Hermes', resDesc:'Zeus and Maia bring forth Hermes.',
-      resImage: vaultImage('hermes.png') },
-    { id:'rec_zeus_europa_calcium', ingA:'item_zeus', ingB:'item_europa',
-      resName:'calcium', resDesc:'A pale mineral trace from divine crossing and bone-white myth.',
-      resImage: vaultImage('Calcium.png') },
-    { id:'rec_ceres_proserpina_harvest', ingA:'item_ceres', ingB:'item_proserpina',
-      resName:'poserpinaharvest', resDesc:'Proserpina returns in harvest light.',
-      resImage: vaultImage('PoserpinaHarvest.png') },
-    { id:'rec_hades_proserpina_under', ingA:'item_hades', ingB:'item_proserpina',
-      resName:'poserpinaunder', resDesc:'Proserpina descends into her underworld throne.',
-      resImage: vaultImage('Poserpinaunder.png') },
-    { id:'rec_iphis_isis_iphislong', ingA:'item_iphis', ingB:'item_isis',
-      resName:'iphislong', resDesc:'Isis extends Iphis into a changed and lasting form.',
-      resImage: vaultImage('Iphislong.png') },
-    { id:'rec_pygmalion_maiden_realmaiden', ingA:'item_pygmalion', ingB:'item_maiden',
-      resName:'realmaiden', resDesc:'Pygmalionâ€™s carved maiden wakes into life.',
-      resImage: vaultImage('Realmaiden.png') },
-    { id:'rec_festival_pygmalion_maiden', ingA:'item_festival', ingB:'item_pygmalion',
-      resName:'maiden', resDesc:'Festival and Pygmalion reveal the maiden.',
-      resImage: vaultImage('maiden.png') },
-    { id:'rec_aphrodite_statue_realmaiden', ingA:'item_aphrodite', ingB:'item_statue',
-      resName:'real maiden', resDesc:'Aphrodite gives the statue life as a real maiden.',
-      resImage: vaultImage('Realmaiden.png') },
-    { id:'rec_venus_adonis_adead', ingA:'item_venus', ingB:'item_adonis',
-      resName:'adead', resDesc:'Adonis falls beneath the flower-bright spell of Venus.',
-      resImage: vaultImage('Adead.png') },
+    { id:'rec_bronze', ingA:'item_copper', ingB:'item_tin', ingC:null, resName:'Bronze', resDesc:'An alloy of strength and utility', resImage: mkSVG('Bz','#8b5a2b','#a0522d') },
+    { id:'rec_pygmalion_real', ingA:'item_pygmalion', ingB:'item_statue', ingC:null, resName:'Galatea', resDesc:'The statue awakened to life by love', resImage: vaultImage('Realmaiden.png') },
+    { id:'rec_maiden_harvest', ingA:'item_maiden', ingB:'item_festival', ingC:null, resName:'Harvest Maiden', resDesc:'The maiden of the fertile season', resImage: vaultImage('PoserpinaHarvest.png') },
+    { id:'rec_maiden_underworld', ingA:'item_maiden', ingB:'item_hades', ingC:null, resName:'Underworld Maiden', resDesc:'The maiden of shadows and return', resImage: vaultImage('Poserpinaunder.png') },
   ]
 };
 
-const REMOVED_ITEM_IDS = new Set([
-  'item_semele',
-  'item_metis',
-  'item_aphrodite_seafoam',
-  'item_sacred_oak',
-  'item_io'
-]);
-
-const REMOVED_RECIPE_IDS = new Set([
-  'rec_athena',
-  'rec_apollo',
-  'rec_artemis',
-  'rec_dionysus',
-  'rec_pegasus',
-  'rec_oracle_oak',
-  'rec_zeus_io_cow'
-]);
-
-const LOCKED_INVENTORY_ITEM_IDS = new Set([
-  'item_adead',
-  'item_apollo',
-  'item_ares',
-  'item_artemis',
-  'item_calcium',
-  'item_david',
-  'item_dionysus',
-  'item_hephaestus',
-  'item_heremes',
-  'item_iphislong',
-  'item_poserpinaunder',
-  'item_poserpinaharvest',
-  'item_realmaiden',
-  'item_tree',
-  'item_lost',
-  'item_statue'
-]);
-
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• STORAGE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-function save() { try { localStorage.setItem('alchemiq_db', JSON.stringify(db)); } catch(e){} }
-function load() {
-  try {
-    const raw = localStorage.getItem('alchemiq_db');
-    if (raw) {
-      db = JSON.parse(raw);
-      mergeSeeds();
-      save();
-      return;
-    }
-  } catch(e){}
-  db.items   = SEEDS.items.slice();
-  db.recipes = SEEDS.recipes.slice();
-  db.inventory = [];
-  db.codex   = [];
-  save();
-}
-
-function mergeSeeds() {
-  db.items = db.items || [];
-  db.recipes = db.recipes || [];
-  db.inventory = db.inventory || [];
-  db.codex = db.codex || [];
-  pruneRemovedSeeds();
-
-  const itemIds = new Set((db.items || []).map(x => x.id));
-  for (const item of SEEDS.items) {
-    const existing = db.items.find(x => x.id === item.id);
-    if (!itemIds.has(item.id)) {
-      db.items.push(item);
-    } else {
-      existing.image = item.image;
-    }
-  }
-
-  const recipeIds = new Set((db.recipes || []).map(x => x.id));
-  for (const recipe of SEEDS.recipes) {
-    const existing = db.recipes.find(x => x.id === recipe.id);
-    if (!recipeIds.has(recipe.id)) {
-      db.recipes.push(recipe);
-    } else {
-      existing.resImage = recipe.resImage;
-    }
-  }
-  syncFusionImages();
-}
-
-function pruneRemovedSeeds() {
-  db.items = db.items.filter(x => !REMOVED_ITEM_IDS.has(x.id) && !REMOVED_RECIPE_IDS.has(x.id.replace(/^fusion_/, '')));
-  db.recipes = db.recipes.filter(x =>
-    !REMOVED_RECIPE_IDS.has(x.id) &&
-    !REMOVED_ITEM_IDS.has(x.ingA) &&
-    !REMOVED_ITEM_IDS.has(x.ingB) &&
-    !REMOVED_ITEM_IDS.has(x.ingC)
-  );
-  db.inventory = db.inventory.filter(id => !REMOVED_ITEM_IDS.has(id) && !REMOVED_RECIPE_IDS.has(id.replace(/^fusion_/, '')));
-  db.codex = db.codex.filter(x => !REMOVED_RECIPE_IDS.has(x.recipeId));
-}
-
-function syncFusionImages() {
-  const byRecipe = new Map(db.recipes.map(x => [x.id, x]));
-  for (const entry of db.codex) {
-    const recipe = byRecipe.get(entry.recipeId);
-    if (recipe) entry.resImage = recipe.resImage;
-  }
-}
-
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• UTILS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-function uid() { return 'x' + Math.random().toString(36).slice(2,10) + Date.now().toString(36); }
-function itemById(id) { return db.items.find(x => x.id === id); }
-function normName(name) { return (name || '').toLowerCase().replace(/\s+/g, ''); }
-function namesMatch(a, b) {
-  const left = normName(a);
-  const right = normName(b);
-  if (left === right) return true;
-  return (left === 'hermes' && (right === 'heremes' || right === 'herems')) ||
-         (right === 'hermes' && (left === 'heremes' || left === 'herems'));
-}
-function isUnlockedForInventory(item) {
-  if (!LOCKED_INVENTORY_ITEM_IDS.has(item.id)) return true;
-  return db.codex.some(entry => namesMatch(entry.resName, item.name));
-}
-function thumb(item, size=38) {
-  if (!item) return `<div style="width:${size}px;height:${size}px;background:var(--surface3);border-radius:3px;display:flex;align-items:center;justify-content:center;font-size:${size*0.5}px">?</div>`;
-  return `<img src="${item.image}" style="width:${size}px;height:${size}px;object-fit:cover;border-radius:3px;border:1px solid var(--border)">`;
-}
-
-let toastT;
-function toast(msg, err=false) {
-  const el = document.getElementById('toast');
-  el.textContent = msg;
-  el.className = 'show' + (err?' err':'');
-  clearTimeout(toastT);
-  toastT = setTimeout(() => el.className='', 2400);
-}
-
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• TABS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-function tab(t) {
-  ['forge','scan','fusion'].forEach(id => {
-    document.getElementById('p-'+id).classList.toggle('active', id===t);
-    document.getElementById('t-'+id).classList.toggle('active', id===t);
-  });
-  if (t==='fusion') renderFusion();
-  if (t==='scan')  renderInventory();
-}
-function subTab(t) {
-  ['items','recipes'].forEach(id => {
-    document.getElementById('sp-'+id).classList.toggle('active', id===t);
-    document.getElementById('st-'+id).classList.toggle('active', id===t);
-  });
-  if (t==='recipes') populateRecipeSelects();
-}
-
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• IMAGE UPLOAD â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-let stagingImgs = {};
-function previewUpload(inputId, lblId, previewId) {
-  const file = document.getElementById(inputId).files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = ev => {
-    stagingImgs[inputId] = ev.target.result;
-    const prev = document.getElementById(previewId);
-    prev.innerHTML = `<img class="thumb" src="${ev.target.result}" style="width:36px;height:36px;object-fit:cover;border-radius:3px">`;
-    const txt = document.getElementById(inputId.replace('-img','-upload-text').replace('i-img','i-upload-text').replace('r-img','r-upload-text'));
-    if (txt) txt.textContent = file.name;
-  };
-  reader.readAsDataURL(file);
-}
-
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CREATE ITEM â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-function createItem() {
-  const name = document.getElementById('i-name').value.trim();
-  if (!name) { toast('Enter a name', true); return; }
-  const img = stagingImgs['i-img'] || mkSVG('âœ¦','#8e7456','#3a2e1a');
-  const item = { id: uid(), name, desc: document.getElementById('i-desc').value.trim(), image: img };
-  db.items.push(item);
-  save();
-  stagingImgs['i-img'] = null;
-  document.getElementById('i-name').value = '';
-  document.getElementById('i-desc').value = '';
-  document.getElementById('i-preview').innerHTML = 'ðŸ–¼';
-  document.getElementById('i-upload-text').textContent = 'Choose an imageâ€¦';
-  document.getElementById('i-img').value = '';
+// ••••••••••••••••••••••••••••••••••••••••••••• INIT
+function init() {
+  db.items = [...SEEDS.items];
+  db.recipes = [...SEEDS.recipes];
+  loadInventory();
   renderItems();
-  toast(`âœ¦ ${name} added`);
+  renderSelects();
+  renderInventory();
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CREATE RECIPE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-function createRecipe() {
-  const ingA  = document.getElementById('r-a').value;
-  const ingB  = document.getElementById('r-b').value;
-  const ingC  = document.getElementById('r-c').value;
-  const name  = document.getElementById('r-name').value.trim();
-  if (!ingA || !ingB) { toast('Choose both ingredients', true); return; }
-  if (ingA === ingB)  { toast('Ingredients must differ', true); return; }
-  if (ingC && (ingC === ingA || ingC === ingB)) { toast('Ingredients must differ', true); return; }
-  if (!name)          { toast('Enter a result name', true); return; }
-  const img = stagingImgs['r-img'] || mkSVG('âœ§','#4a90d9','#1a3a6e');
-  const recipe = {
-    id: uid(), ingA, ingB, ingC,
-    resName: name,
-    resDesc: document.getElementById('r-desc').value.trim(),
-    resImage: img
-  };
-  db.recipes.push(recipe);
-  save();
-  stagingImgs['r-img'] = null;
-  document.getElementById('r-a').value = '';
-  document.getElementById('r-b').value = '';
-  document.getElementById('r-c').value = '';
-  document.getElementById('r-name').value = '';
-  document.getElementById('r-desc').value = '';
-  document.getElementById('r-preview').innerHTML = 'ðŸ–¼';
-  document.getElementById('r-upload-text').textContent = 'Choose an imageâ€¦';
-  document.getElementById('r-img').value = '';
-  renderRecipes();
-  toast(`âœ¦ Recipe added`);
+function loadInventory() {
+  const inv = localStorage.getItem('inventory');
+  if (inv) db.inventory = JSON.parse(inv);
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• RENDER â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+function saveInventory() {
+  localStorage.setItem('inventory', JSON.stringify(db.inventory));
+}
+
+function saveCodex() {
+  localStorage.setItem('codex', JSON.stringify(db.codex));
+}
+
+function loadCodex() {
+  const codex = localStorage.getItem('codex');
+  if (codex) db.codex = JSON.parse(codex);
+}
+
+// ••••••••••••••••••••••••••••••••••••••••••••• RENDER
 function renderItems() {
-  const g = document.getElementById('items-grid');
-  const visibleItems = db.items.filter(isUnlockedForInventory);
-  g.innerHTML = visibleItems.map(item => `
-    <div class="item-card" onclick="showImage('${item.id}')">
-      ${item.image
-        ? `<img class="card-img" src="${item.image}" alt="${item.name}">`
-        : `<div class="card-img-placeholder">âœ¦</div>`}
-      <div class="card-body">
-        <div class="card-name">${item.name}</div>
-        <div class="card-actions">
-          <button class="card-qr" onclick="event.stopPropagation();showQR('${item.id}')">QR</button>
-          <button class="card-del" onclick="event.stopPropagation();deleteItem('${item.id}')">âœ•</button>
-        </div>
-      </div>
-    </div>
-  `).join('');
+  const grid = document.getElementById('items-grid');
+  grid.innerHTML = '';
+  db.items.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'item-card';
+    const img = new Image();
+    img.src = item.image;
+    img.className = 'card-img';
+    img.onerror = () => {
+      card.innerHTML = '<div class="card-img-placeholder">?</div><div class="card-body"><div class="card-name">' + item.name + '</div></div>';
+    };
+    card.appendChild(img);
+    const body = document.createElement('div');
+    body.className = 'card-body';
+    const name = document.createElement('div');
+    name.className = 'card-name';
+    name.textContent = item.name;
+    body.appendChild(name);
+    card.appendChild(body);
+    card.addEventListener('click', () => viewImage(item));
+    grid.appendChild(card);
+  });
 }
 
-function renderRecipes() {
-  const el = document.getElementById('recipes-list');
-  if (!db.recipes.length) {
-    el.innerHTML = '<div class="empty-state">No recipes yet.</div>';
-    return;
-  }
-  el.innerHTML = db.recipes.map(r => {
-    const a = itemById(r.ingA), b = itemById(r.ingB), c = itemById(r.ingC);
-    return `
-      <div class="recipe-card">
-        ${thumb(a,38)}
-        <div class="rc-name">${a?.name||'?'}</div>
-        <div class="rc-sym">+</div>
-        ${thumb(b,38)}
-        <div class="rc-name">${b?.name||'?'}</div>
-        ${r.ingC ? `
-          <div class="rc-sym">+</div>
-          ${thumb(c,38)}
-          <div class="rc-name">${c?.name||'?'}</div>
-        ` : ''}
-        <div class="rc-sym">â†’</div>
-        ${r.resImage?`<img class="rc-img" src="${r.resImage}">`:''}
-        <div class="rc-name" style="color:var(--gold)">${r.resName}</div>
-        <button class="rc-del" onclick="deleteRecipe('${r.id}')">âœ•</button>
-      </div>`;
-  }).join('');
-}
-
-function populateRecipeSelects() {
-  const opts = db.items.map(i => `<option value="${i.id}">${i.name}</option>`).join('');
-  document.getElementById('r-a').innerHTML = '<option value="">â€” Item A â€”</option>' + opts;
-  document.getElementById('r-b').innerHTML = '<option value="">â€” Item B â€”</option>' + opts;
-  document.getElementById('r-c').innerHTML = '<option value="">â€” Item C â€”</option>' + opts;
-}
-
-function populateFusionSelects() {
-  const opts = db.items.map(i => `<option value="${i.id}">${i.name}</option>`).join('');
-  document.getElementById('f-a').innerHTML = '<option value="">â€” Item A â€”</option>' + opts;
-  document.getElementById('f-b').innerHTML = '<option value="">â€” Item B â€”</option>' + opts;
-  document.getElementById('f-c').innerHTML = '<option value="">â€” Item C â€”</option>' + opts;
+function renderSelects() {
+  ['f-a', 'f-b', 'f-c'].forEach(id => {
+    const sel = document.getElementById(id);
+    sel.innerHTML = '<option value="">-- Select --</option>';
+    db.items.forEach(item => {
+      const opt = document.createElement('option');
+      opt.value = item.id;
+      opt.textContent = item.name;
+      sel.appendChild(opt);
+    });
+  });
 }
 
 function renderInventory() {
-  const g = document.getElementById('inv-grid');
+  const grid = document.getElementById('inv-grid');
   const empty = document.getElementById('inv-empty');
-  if (!db.inventory.length) { g.innerHTML=''; empty.style.display='block'; return; }
-  empty.style.display='none';
-  g.innerHTML = db.inventory.map(id => {
-    const item = itemById(id);
-    if (!item) return '';
-    return `<div class="inv-card" onclick="showImage('${item.id}')">
-      <img src="${item.image}" alt="${item.name}">
-      <div class="inv-name">${item.name}</div>
-    </div>`;
-  }).join('');
-}
-
-function renderFusion() {
-  populateFusionSelects();
-  const g  = document.getElementById('codex-grid');
-  const em = document.getElementById('codex-empty');
-  const badge = document.getElementById('fusion-badge');
-  if (!db.codex.length) { g.innerHTML=''; em.style.display='block'; badge.style.display='none'; return; }
-  em.style.display='none';
-  badge.style.display='inline';
-  badge.textContent = db.codex.length;
-  g.innerHTML = db.codex.map(c => `
-    <div class="codex-card">
-      ${c.resImage?`<img src="${c.resImage}" alt="${c.resName}">`:''}
-      <div class="cc-body">
-        <div class="cc-name">${c.resName}</div>
-        <div class="cc-recipe">${[c.ingAName, c.ingBName, c.ingCName].filter(Boolean).join(' + ')}</div>
-        ${c.resDesc?`<div class="cc-desc">${c.resDesc}</div>`:''}
-      </div>
-    </div>`).join('');
-}
-
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• DELETE â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-function recipeIngredientIds(recipe) {
-  return [recipe.ingA, recipe.ingB, recipe.ingC].filter(Boolean);
-}
-
-function recipeIngredientNames(recipe) {
-  return recipeIngredientIds(recipe).map(id => (itemById(id)?.name || '').toLowerCase());
-}
-
-function sameSet(a, b) {
-  if (a.length !== b.length) return false;
-  const left = a.slice().sort();
-  const right = b.slice().sort();
-  return left.every((value, index) => value === right[index]);
-}
-
-function findRecipesForItems(ids) {
-  const selectedIds = ids.filter(Boolean);
-  const selectedNames = selectedIds.map(id => (itemById(id)?.name || '').toLowerCase());
-  return db.recipes.filter(r =>
-    sameSet(recipeIngredientIds(r), selectedIds) ||
-    sameSet(recipeIngredientNames(r), selectedNames)
-  );
-}
-
-function resultItemId(recipe) {
-  return 'fusion_' + recipe.id;
-}
-
-function ensureFusionResultItem(recipe) {
-  const existingByName = db.items.find(x => namesMatch(recipe.resName, x.name));
-  const id = existingByName?.id || resultItemId(recipe);
-  let item = existingByName || itemById(id);
-  if (!item) {
-    item = {
-      id,
-      name: recipe.resName,
-      desc: recipe.resDesc || 'Created by fusion',
-      image: recipe.resImage || mkSVG('âœ§','#4a90d9','#1a3a6e')
-    };
-    db.items.push(item);
-  }
-  if (!db.inventory.includes(id)) db.inventory.push(id);
-  return item;
-}
-
-function recordFusion(recipe, iA, iB, iC) {
-  if (!db.codex.some(c=>c.recipeId===recipe.id)) {
-    db.codex.push({
-      recipeId: recipe.id,
-      resName:  recipe.resName,
-      resDesc:  recipe.resDesc,
-      resImage: recipe.resImage,
-      ingAName: iA?.name||'?',
-      ingBName: iB?.name||'?',
-      ingCName: iC?.name||''
-    });
-  }
-  return ensureFusionResultItem(recipe);
-}
-
-function manualFuse() {
-  const aId = document.getElementById('f-a').value;
-  const bId = document.getElementById('f-b').value;
-  const cId = document.getElementById('f-c').value;
-  const box = document.getElementById('fusion-result');
-  if (!aId || !bId) { toast('Choose at least two items', true); return; }
-  const selectedIds = [aId, bId, cId].filter(Boolean);
-  if (new Set(selectedIds).size !== selectedIds.length) { toast('Items must differ', true); return; }
-
-  const recipes = findRecipesForItems(selectedIds);
-  const iA = itemById(aId);
-  const iB = itemById(bId);
-  const iC = itemById(cId);
-  if (!recipes.length) {
-    box.innerHTML = '<div class="empty-state" style="padding:8px 0">No recipe found for that combination.</div>';
-    toast('No fusion found', true);
+  grid.innerHTML = '';
+  if (db.inventory.length === 0) {
+    empty.style.display = 'block';
     return;
   }
-
-  const resultItems = recipes.map(recipe => recordFusion(recipe, iA, iB, iC));
-  save();
-  renderItems();
-  renderInventory();
-  renderFusion();
-  box.innerHTML = resultItems.map(resultItem => `
-    <div class="recipe-card">
-      ${thumb(iA,38)}
-      <div class="rc-name">${iA?.name||'?'}</div>
-      <div class="rc-sym">+</div>
-      ${thumb(iB,38)}
-      <div class="rc-name">${iB?.name||'?'}</div>
-      ${iC ? `
-        <div class="rc-sym">+</div>
-        ${thumb(iC,38)}
-        <div class="rc-name">${iC.name}</div>
-      ` : ''}
-      <div class="rc-sym">â†’</div>
-      ${resultItem.image?`<img class="rc-img" src="${resultItem.image}">`:''}
-      <div class="rc-name" style="color:var(--gold)">${resultItem.name}</div>
-    </div>`).join('');
-  toast(`âœ¦ ${resultItems.map(x => x.name).join(' + ')} created`);
-  triggerFusion(recipes[0], iA, iB, iC);
-}
-
-function deleteItem(id) {
-  db.items = db.items.filter(x=>x.id!==id);
-  db.recipes = db.recipes.filter(r=>r.ingA!==id && r.ingB!==id && r.ingC!==id);
-  db.inventory = db.inventory.filter(x=>x!==id);
-  save(); renderItems(); renderInventory();
-  toast('Item removed');
-}
-function deleteRecipe(id) {
-  db.recipes = db.recipes.filter(x=>x.id!==id);
-  save(); renderRecipes();
-  toast('Recipe removed');
-}
-function clearInventory() {
-  db.inventory = [];
-  save(); renderInventory();
-  toast('Inventory cleared');
-}
-
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• QR MODAL â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-let qrInst = null;
-function showQR(itemId) {
-  const item = itemById(itemId);
-  if (!item) return;
-  document.getElementById('qr-modal-name').textContent = item.name;
-  const holder = document.getElementById('qr-modal-holder');
-  holder.innerHTML = '';
-  if (qrInst) { try { qrInst.clear(); } catch(e){} }
-  qrInst = new QRCode(holder, {
-    text: `ALCHEMIQ:v1:${item.id}`,
-    width: 200, height: 200,
-    colorDark: '#000000', colorLight: '#ffffff',
-    correctLevel: QRCode.CorrectLevel.M
+  empty.style.display = 'none';
+  db.inventory.forEach(itemId => {
+    const item = db.items.find(i => i.id === itemId);
+    if (!item) return;
+    const card = document.createElement('div');
+    card.className = 'inv-card';
+    const img = new Image();
+    img.src = item.image;
+    img.onerror = () => { card.innerHTML = '<div style="width:100%;aspect-ratio:1;background:var(--surface2);display:flex;align-items:center;justify-content:center">?</div><div class="inv-name">' + item.name + '</div>'; };
+    card.appendChild(img);
+    const name = document.createElement('div');
+    name.className = 'inv-name';
+    name.textContent = item.name;
+    card.appendChild(name);
+    card.addEventListener('click', () => viewImage(item));
+    grid.appendChild(card);
   });
-  document.getElementById('qr-modal').style.display = 'flex';
 }
-function closeQR() { document.getElementById('qr-modal').style.display = 'none'; }
 
-function showImage(itemId) {
-  const item = itemById(itemId);
-  if (!item || !item.image) return;
+function renderCodex() {
+  const grid = document.getElementById('codex-grid');
+  const empty = document.getElementById('codex-empty');
+  grid.innerHTML = '';
+  loadCodex();
+  if (db.codex.length === 0) {
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  db.codex.forEach(entry => {
+    const card = document.createElement('div');
+    card.className = 'codex-card';
+    const img = new Image();
+    img.src = entry.resImage;
+    img.onerror = () => { card.innerHTML = '<div style="width:100%;aspect-ratio:1;background:var(--surface2);display:flex;align-items:center;justify-content:center">?</div><div class="cc-body"><div class="cc-name">' + entry.resName + '</div></div>'; };
+    card.appendChild(img);
+    const body = document.createElement('div');
+    body.className = 'cc-body';
+    const title = document.createElement('div');
+    title.className = 'cc-name';
+    title.textContent = entry.resName;
+    body.appendChild(title);
+    const recipe = document.createElement('div');
+    recipe.className = 'cc-recipe';
+    const ingNames = [entry.ingAName, entry.ingBName, entry.ingCName].filter(n => n);
+    recipe.textContent = ingNames.join(' + ');
+    body.appendChild(recipe);
+    const desc = document.createElement('div');
+    desc.className = 'cc-desc';
+    desc.textContent = entry.resDesc;
+    body.appendChild(desc);
+    card.appendChild(body);
+    grid.appendChild(card);
+  });
+}
+
+// ••••••••••••••••••••••••••••••••••••••••••••• ACTIONS
+function tab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('t-' + name).classList.add('active');
+  document.getElementById('p-' + name).classList.add('active');
+  if (name === 'fusion') renderCodex();
+}
+
+function viewImage(item) {
   document.getElementById('image-modal-name').textContent = item.name;
-  const img = document.getElementById('image-modal-img');
-  img.src = item.image;
-  img.alt = item.name;
-  document.getElementById('image-modal-desc').textContent = item.desc || '';
+  document.getElementById('image-modal-img').src = item.image;
+  document.getElementById('image-modal-desc').textContent = item.desc;
   document.getElementById('image-modal').style.display = 'flex';
 }
+
 function closeImageModal() {
   document.getElementById('image-modal').style.display = 'none';
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CAMERA â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-let camStream=null, scanning=false, raf=null, lastCode=null, lastCodeTs=0;
-
-async function startCam() {
-  try {
-    camStream = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode:{ideal:'environment'}, width:{ideal:1280}, height:{ideal:720} }
-    });
-    const video = document.getElementById('cam');
-    video.srcObject = camStream;
-    document.getElementById('video-wrap').classList.add('on');
-    document.getElementById('cam-start').disabled = true;
-    document.getElementById('cam-stop').disabled  = false;
-    setStatus('on','Scanningâ€¦');
-    scanning = true;
-    video.onloadedmetadata = loop;
-  } catch(e) { toast('Camera error: '+e.message, true); }
-}
-function stopCam() {
-  scanning = false;
-  if (raf) cancelAnimationFrame(raf);
-  if (camStream) { camStream.getTracks().forEach(t=>t.stop()); camStream=null; }
-  document.getElementById('video-wrap').classList.remove('on');
-  document.getElementById('cam-start').disabled = false;
-  document.getElementById('cam-stop').disabled  = true;
-  setStatus('','Camera off');
-}
-function loop() {
-  if (!scanning) return;
-  const video = document.getElementById('cam');
-  const cv    = document.getElementById('scan-cv');
-  if (video.readyState === video.HAVE_ENOUGH_DATA) {
-    cv.width=video.videoWidth; cv.height=video.videoHeight;
-    const ctx = cv.getContext('2d');
-    ctx.drawImage(video,0,0);
-    const img = ctx.getImageData(0,0,cv.width,cv.height);
-    const code = jsQR(img.data, img.width, img.height, {inversionAttempts:'dontInvert'});
-    if (code) {
-      const now=Date.now();
-      if (code.data!==lastCode || now-lastCodeTs>1600) {
-        lastCode=code.data; lastCodeTs=now;
-        handleCode(code.data);
-      }
-    }
+function addToInventory(itemId) {
+  if (!db.inventory.includes(itemId)) {
+    db.inventory.push(itemId);
+    saveInventory();
+    renderInventory();
+    updateFusionBadge();
   }
-  raf = requestAnimationFrame(loop);
-}
-function setStatus(type, msg) {
-  const d=document.getElementById('sdot');
-  d.className='sdot'+(type?' '+type:'');
-  document.getElementById('stext').textContent=msg;
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• HANDLE SCAN â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-function handleCode(text) {
-  if (!text.startsWith('ALCHEMIQ:v1:')) return;
-  const id = text.slice('ALCHEMIQ:v1:'.length);
-  const item = itemById(id);
-  if (!item) { setStatus('','Unknown item'); return; }
+function clearInventory() {
+  if (confirm('Clear all collected items?')) {
+    db.inventory = [];
+    saveInventory();
+    renderInventory();
+    updateFusionBadge();
+  }
+}
 
-  setStatus('hit', `${item.name} detected!`);
-  setTimeout(()=>setStatus('on','Scanningâ€¦'), 1000);
+function updateFusionBadge() {
+  const badge = document.getElementById('fusion-badge');
+  const count = db.inventory.length;
+  if (count > 0) {
+    badge.textContent = count;
+    badge.style.display = 'inline-block';
+  } else {
+    badge.style.display = 'none';
+  }
+}
 
-  if (db.inventory.includes(id)) {
-    toast(`Already have ${item.name}`);
+function manualFuse() {
+  const aVal = document.getElementById('f-a').value;
+  const bVal = document.getElementById('f-b').value;
+  const cVal = document.getElementById('f-c').value;
+  if (!aVal || !bVal) {
+    toast('Select at least 2 items', 'err');
+    return;
+  }
+  performFusion(aVal, bVal, cVal || null);
+}
+
+function performFusion(ingA, ingB, ingC) {
+  const recipe = db.recipes.find(r => 
+    (r.ingA === ingA && r.ingB === ingB && (!r.ingC || r.ingC === ingC)) ||
+    (r.ingA === ingB && r.ingB === ingA && (!r.ingC || r.ingC === ingC)) ||
+    (r.ingA === ingA && r.ingB === ingC && r.ingC === ingB) ||
+    (r.ingA === ingB && r.ingB === ingC && r.ingC === ingA) ||
+    (r.ingA === ingC && r.ingB === ingA && r.ingC === ingB)
+  );
+  
+  if (!recipe) {
+    toast('No recipe matches', 'err');
     return;
   }
 
-  db.inventory.push(id);
-  save();
-  renderInventory();
-  toast(`âœ¦ ${item.name} collected!`);
-  checkFusions(id);
+  const aItem = db.items.find(i => i.id === ingA);
+  const bItem = db.items.find(i => i.id === ingB);
+  const cItem = ingC ? db.items.find(i => i.id === ingC) : null;
+  const resItem = db.items.find(i => i.id === 'item_' + recipe.resName.toLowerCase().replace(/\s+/g, '_'));
+  
+  showMergeOverlay(
+    aItem,
+    bItem,
+    cItem,
+    recipe.resName,
+    recipe.resDesc,
+    recipe.resImage
+  );
+
+  db.codex.push({
+    recipeId: recipe.id,
+    resName: recipe.resName,
+    resDesc: recipe.resDesc,
+    resImage: recipe.resImage,
+    ingAName: aItem.name,
+    ingBName: bItem.name,
+    ingCName: cItem ? cItem.name : null
+  });
+  saveCodex();
+  addToInventory('item_' + recipe.resName.toLowerCase().replace(/\s+/g, '_'));
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• FUSION CHECK â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-function checkFusions(newId) {
-  let firstUnlocked = null;
-  for (const recipe of db.recipes) {
-    const hasA = db.inventory.includes(recipe.ingA);
-    const hasB = db.inventory.includes(recipe.ingB);
-    const hasC = !recipe.ingC || db.inventory.includes(recipe.ingC);
-    if (!hasA || !hasB || !hasC) continue;
-    if (db.codex.some(c=>c.recipeId===recipe.id)) continue; // already discovered
-
-    const iA = itemById(recipe.ingA);
-    const iB = itemById(recipe.ingB);
-    const iC = itemById(recipe.ingC);
-
-    recordFusion(recipe, iA, iB, iC);
-    save();
-
-    // Update fusion badge
-    const badge = document.getElementById('fusion-badge');
-    badge.style.display='inline';
-    badge.textContent = db.codex.length;
-    renderItems();
-    renderInventory();
-    renderFusion();
-
-    if (!firstUnlocked) firstUnlocked = { recipe, iA, iB, iC };
-  }
-  if (firstUnlocked) {
-    setTimeout(() => triggerFusion(firstUnlocked.recipe, firstUnlocked.iA, firstUnlocked.iB, firstUnlocked.iC), 400);
-  }
-}
-
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• MERGE ANIMATION â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-function triggerFusion(recipe, iA, iB, iC) {
-  const overlay = document.getElementById('merge-overlay');
-  document.getElementById('mo-title').textContent = 'âš— Fusion Unlocked';
-
+function showMergeOverlay(a, b, c, name, desc, img) {
   const stage = document.getElementById('mo-stage');
-  stage.innerHTML = `
-    <div class="merge-card">
-      <img src="${iA.image}" alt="${iA.name}">
-      <div class="merge-card-name">${iA.name}</div>
-    </div>
-    <div class="merge-plus">+</div>
-    <div class="merge-card" style="animation-name:slideRight">
-      <img src="${iB.image}" alt="${iB.name}">
-      <div class="merge-card-name">${iB.name}</div>
-    </div>
-    ${iC ? `
-      <div class="merge-plus">+</div>
-      <div class="merge-card" style="animation-name:slideRight">
-        <img src="${iC.image}" alt="${iC.name}">
-        <div class="merge-card-name">${iC.name}</div>
-      </div>
-    ` : ''}
-    <div class="merge-arrow">â†’</div>
-  `;
+  stage.innerHTML = '';
+  
+  const createCard = (item) => {
+    const card = document.createElement('div');
+    card.className = 'merge-card';
+    const image = document.createElement('img');
+    image.src = item.image;
+    card.appendChild(image);
+    const cname = document.createElement('div');
+    cname.className = 'merge-card-name';
+    cname.textContent = item.name;
+    card.appendChild(cname);
+    return card;
+  };
 
-  const res = document.getElementById('mo-result');
-  res.innerHTML = `
-    <img src="${recipe.resImage}" alt="${recipe.resName}">
-    <div class="merge-result-name">${recipe.resName}</div>
-  `;
+  stage.appendChild(createCard(a));
+  const plus = document.createElement('div');
+  plus.className = 'merge-plus';
+  plus.textContent = '+';
+  stage.appendChild(plus);
+  stage.appendChild(createCard(b));
+  
+  if (c) {
+    const plus2 = document.createElement('div');
+    plus2.className = 'merge-plus';
+    plus2.textContent = '+';
+    stage.appendChild(plus2);
+    stage.appendChild(createCard(c));
+  }
 
-  document.getElementById('mo-desc').textContent = recipe.resDesc || '';
-  overlay.classList.add('show');
+  const arrow = document.createElement('div');
+  arrow.className = 'merge-arrow';
+  arrow.textContent = '→';
+  stage.appendChild(arrow);
+
+  const result = document.getElementById('mo-result');
+  result.innerHTML = '';
+  const rimg = document.createElement('img');
+  rimg.src = img;
+  result.appendChild(rimg);
+  const rname = document.createElement('div');
+  rname.className = 'merge-result-name';
+  rname.textContent = name;
+  result.appendChild(rname);
+
+  document.getElementById('mo-title').textContent = name;
+  document.getElementById('mo-desc').textContent = desc;
+  document.getElementById('merge-overlay').classList.add('show');
 }
+
 function closeMerge() {
   document.getElementById('merge-overlay').classList.remove('show');
 }
 
-// â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• INIT â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-load();
-renderItems();
-renderInventory();
-renderFusion();
+function openQR(item) {
+  document.getElementById('qr-modal-name').textContent = item.name;
+  document.getElementById('qr-modal-holder').innerHTML = '';
+  new QRCode(document.getElementById('qr-modal-holder'), {
+    text: JSON.stringify({ id: item.id, name: item.name }),
+    width: 200,
+    height: 200
+  });
+  document.getElementById('qr-modal').style.display = 'flex';
+}
+
+function closeQR() {
+  document.getElementById('qr-modal').style.display = 'none';
+}
+
+function toast(msg, type = 'info') {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.className = 'show';
+  if (type === 'err') el.classList.add('err');
+  setTimeout(() => { el.classList.remove('show'); }, 2500);
+}
+
+// ••••••••••••••••••••••••••••••••••••••••••••• CAMERA
+let stream = null;
+
+async function startCam() {
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+    document.getElementById('cam').srcObject = stream;
+    document.getElementById('video-wrap').classList.add('on');
+    document.getElementById('sdot').classList.add('on');
+    document.getElementById('stext').textContent = 'Scanning...';
+    document.getElementById('cam-start').disabled = true;
+    document.getElementById('cam-stop').disabled = false;
+    scanForQR();
+  } catch (e) {
+    toast('Camera access denied', 'err');
+  }
+}
+
+function stopCam() {
+  if (stream) {
+    stream.getTracks().forEach(track => track.stop());
+    stream = null;
+  }
+  document.getElementById('video-wrap').classList.remove('on');
+  document.getElementById('sdot').classList.remove('on');
+  document.getElementById('stext').textContent = 'Camera off';
+  document.getElementById('cam-start').disabled = false;
+  document.getElementById('cam-stop').disabled = true;
+}
+
+function scanForQR() {
+  const video = document.getElementById('cam');
+  const canvas = document.getElementById('scan-cv');
+  const ctx = canvas.getContext('2d');
+
+  const checkFrame = () => {
+    if (!stream) return;
+    canvas.width = video.videoWidth;
+    canvas.height = video.videoHeight;
+    ctx.drawImage(video, 0, 0);
+    const data = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    const result = jsQR(data.data, canvas.width, canvas.height);
+    
+    if (result) {
+      try {
+        const payload = JSON.parse(result.data);
+        if (payload.id && payload.name) {
+          document.getElementById('sdot').classList.add('hit');
+          addToInventory(payload.id);
+          toast('Collected: ' + payload.name);
+          setTimeout(() => {
+            document.getElementById('sdot').classList.remove('hit');
+            requestAnimationFrame(checkFrame);
+          }, 1500);
+          return;
+        }
+      } catch (e) {}
+    }
+    requestAnimationFrame(checkFrame);
+  };
+  checkFrame();
+}
+
+// ••••••••••••••••••••••••••••••••••••••••••••• START
+init();
+loadCodex();
+renderCodex();
+updateFusionBadge();
 </script>
+
 </body>
 </html>
